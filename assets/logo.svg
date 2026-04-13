@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="200" height="52" role="img" aria-label="주보라 로고">
+  <!-- 아이콘 박스 -->
+  <rect x="0" y="0" width="52" height="52" rx="12" fill="#0367A6"/>
+  <!-- 현수막 모양 심볼 (3개 줄 = 문구 / 장식선) -->
+  <rect x="10" y="14" width="32" height="4" rx="2" fill="#FEE500"/>
+  <rect x="10" y="22" width="32" height="6" rx="2" fill="white"/>
+  <rect x="10" y="32" width="22" height="4" rx="2" fill="rgba(255,255,255,0.5)"/>
+  <!-- 걸이 구멍 -->
+  <circle cx="13" cy="10" r="2.5" fill="none" stroke="#FEE500" stroke-width="1.5"/>
+  <circle cx="39" cy="10" r="2.5" fill="none" stroke="#FEE500" stroke-width="1.5"/>
+
+  <!-- 브랜드명 텍스트 -->
+  <text x="64" y="22" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif"
+        font-size="18" font-weight="800" fill="#0367A6" letter-spacing="-0.5">주보라</text>
+  <text x="64" y="39" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif"
+        font-size="10" font-weight="500" fill="#64748b" letter-spacing="0.5">현수막·배너 전문</text>
+</svg>

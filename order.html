@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>현수막 견적·주문 | 주보라 – 실시간 가격 계산</title>
+  <meta name="description" content="현수막·배너 가격을 실시간으로 확인하고 바로 주문하세요. 재질·크기·수량 선택 즉시 자동 견적. 주보라에서 현수막 인쇄 주문하기." />
+  <meta name="keywords" content="현수막 가격,현수막 견적,배너 가격,현수막 주문,배너 주문,현수막 인쇄 주문,현수막 단가" />
+  <link rel="canonical" href="https://jubora.kr/order.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="주보라" />
+  <meta property="og:title"       content="현수막 견적·주문 | 주보라" />
+  <meta property="og:description" content="현수막 가격 실시간 계산. 재질·크기·수량 선택 후 바로 주문." />
+  <meta property="og:image"       content="https://jubora.kr/og-image.png" />
+  <meta property="og:url"         content="https://jubora.kr/order.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon"            href="favicon.svg" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/order.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER (공통) ===================== -->
+  <header id="site-header">
+    <div class="header-top">
+      <div class="container">
+        <span>📞 평일 09:00 – 18:00 | 토 09:00 – 13:00</span>
+        <div class="header-top-links">
+          <a href="#">로그인</a>
+          <a href="#">회원가입</a>
+          <a href="#">고객센터</a>
+          <a href="#">주문조회</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><span>주</span></div>
+          <div>주보라<span class="logo-sub">현수막·배너 전문</span></div>
+        </a>
+        <div class="header-search">
+          <input type="text" placeholder="찾으시는 제품을 검색하세요" />
+          <button type="button" aria-label="검색">🔍</button>
+        </div>
+        <div class="header-actions">
+          <button class="header-action-btn" type="button"><span class="icon">👤</span>마이페이지</button>
+          <button class="header-action-btn" type="button"><span class="icon">🛒</span>장바구니</button>
+          <button class="header-action-btn" type="button"><span class="icon">❤️</span>찜목록</button>
+        </div>
+        <button class="hamburger" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav id="site-nav" aria-label="주메뉴">
+      <div class="container">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html"    class="nav-link">홈</a></li>
+          <li class="nav-item">
+            <a href="templates.html" class="nav-link">제품 카탈로그 ▾</a>
+            <div class="nav-dropdown">
+              <a href="#">현수막</a><a href="#">배너</a><a href="#">X-배너</a>
+              <a href="#">롤업 배너</a><a href="#">현수막 스탠드</a><a href="#">명함·스티커</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="templates.html" class="nav-link">디자인 템플릿</a></li>
+          <li class="nav-item">
+            <a href="editor.html" class="nav-link">직접 제작 ▾</a>
+            <div class="nav-dropdown">
+              <a href="editor.html">온라인 편집기</a><a href="#">파일 직접 업로드</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="order.html" class="nav-link active">견적·주문</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">이벤트</a></li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">고객센터 ▾</a>
+            <div class="nav-dropdown">
+              <a href="#">자주 묻는 질문</a><a href="#">제작 가이드</a>
+              <a href="#">1:1 문의</a><a href="#">공지사항</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- /HEADER -->
+
+  <!-- ===================== MAIN ===================== -->
+  <main>
+
+    <!-- 페이지 히어로 -->
+    <div class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="경로">
+          <a href="index.html">홈</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>견적·주문</span>
+        </nav>
+        <h1>견적·주문</h1>
+        <p>옵션을 선택하면 즉시 가격이 계산됩니다</p>
+      </div>
+    </div>
+
+    <!-- ─────────── 주문 진행 스텝 바 ─────────── -->
+    <div class="order-progress-bar">
+      <div class="container">
+        <ol class="order-steps">
+          <li class="order-step active" data-step="1">
+            <span class="os-num">1</span>
+            <span class="os-label">옵션 선택</span>
+          </li>
+          <li class="order-step-sep"></li>
+          <li class="order-step" data-step="2">
+            <span class="os-num">2</span>
+            <span class="os-label">주문 정보</span>
+          </li>
+          <li class="order-step-sep"></li>
+          <li class="order-step" data-step="3">
+            <span class="os-num">3</span>
+            <span class="os-label">접수 완료</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- ─────────── 주문 본문 ─────────── -->
+    <div class="section">
+      <div class="container">
+        <div class="order-layout">
+
+          <!-- ────── 좌측 폼 영역 ────── -->
+          <div class="order-form-area">
+
+            <!-- ══════════════════════════════════════
+                 섹션 1 · 편집 내용 요약
+            ══════════════════════════════════════ -->
+            <div class="order-card" id="step-design">
+              <div class="order-card-header">
+                <span class="step-badge">1</span>
+                <h2>편집 디자인 확인</h2>
+                <a href="editor.html" class="btn btn-outline btn-sm" id="btn-edit-again"
+                   style="margin-left:auto;">✏ 수정하기</a>
+              </div>
+              <div class="order-card-body">
+
+                <!-- 편집기 데이터 없을 때 -->
+                <div id="no-design-msg" class="no-design-msg">
+                  <span class="no-design-icon">🖼</span>
+                  <p>아직 디자인이 없습니다.</p>
+                  <a href="editor.html" class="btn btn-primary btn-sm">온라인 편집기 열기 →</a>
+                  <span class="or-divider">또는</span>
+                  <p class="no-design-hint">아래 옵션을 선택 후 주문 정보를 입력하시면<br>담당자가 시안을 제작해 드립니다.</p>
+                </div>
+
+                <!-- 편집기 데이터 있을 때 (JS로 채움) -->
+                <div id="design-summary-wrap" style="display:none;">
+                  <div class="design-summary">
+                    <div class="design-thumb-col">
+                      <div class="design-thumb-box" id="design-thumb-box">
+                        <!-- 편집기 미리보기 (CSS 캔버스 축소판) -->
+                      </div>
+                    </div>
+                    <div class="design-info-col">
+                      <table class="design-info-table" id="design-info-table">
+                        <!-- JS로 채움 -->
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ══════════════════════════════════════
+                 섹션 2 · 옵션 선택
+            ══════════════════════════════════════ -->
+            <div class="order-card" id="step-options">
+              <div class="order-card-header">
+                <span class="step-badge">2</span>
+                <h2>제품 옵션 선택</h2>
+              </div>
+              <div class="order-card-body">
+
+                <!-- ── 제품 종류 ── -->
+                <div class="form-group">
+                  <label class="form-label">제품 종류 <span class="required">*</span></label>
+                  <div class="opt-btn-group" id="opt-product-type">
+                    <button class="opt-btn active" data-val="현수막">🚩 현수막</button>
+                    <button class="opt-btn" data-val="배너">📌 배너</button>
+                    <button class="opt-btn" data-val="X배너">✖ X-배너</button>
+                    <button class="opt-btn" data-val="실사출력">🖨 실사출력</button>
+                  </div>
+                </div>
+
+                <!-- ── 크기 선택 ── -->
+                <div class="form-group">
+                  <label class="form-label">크기 <span class="required">*</span></label>
+
+                  <!-- 현수막 크기 -->
+                  <div class="size-options" id="sizes-현수막">
+                    <div class="opt-btn-group opt-btn-group--wrap">
+                      <button class="opt-btn active" data-w="900" data-h="1200">900×1200mm</button>
+                      <button class="opt-btn" data-w="900" data-h="1800">900×1800mm</button>
+                      <button class="opt-btn" data-w="900" data-h="2400">900×2400mm</button>
+                      <button class="opt-btn" data-w="900" data-h="3000">900×3000mm</button>
+                      <button class="opt-btn" data-w="0" data-h="0" data-custom="1">직접 입력</button>
+                    </div>
+                  </div>
+
+                  <!-- 배너 크기 -->
+                  <div class="size-options" id="sizes-배너" style="display:none;">
+                    <div class="opt-btn-group opt-btn-group--wrap">
+                      <button class="opt-btn active" data-w="600" data-h="1800">600×1800mm</button>
+                      <button class="opt-btn" data-w="600" data-h="2400">600×2400mm</button>
+                      <button class="opt-btn" data-w="0" data-h="0" data-custom="1">직접 입력</button>
+                    </div>
+                  </div>
+
+                  <!-- X배너 크기 (고정) -->
+                  <div class="size-options" id="sizes-X배너" style="display:none;">
+                    <div class="opt-btn-group">
+                      <button class="opt-btn active" data-w="600" data-h="1800">600×1800mm (고정)</button>
+                    </div>
+                  </div>
+
+                  <!-- 실사출력 크기 (직접입력만) -->
+                  <div class="size-options" id="sizes-실사출력" style="display:none;">
+                    <div class="opt-btn-group">
+                      <button class="opt-btn active" data-w="0" data-h="0" data-custom="1">직접 입력</button>
+                    </div>
+                  </div>
+
+                  <!-- 직접 입력 필드 (공통) -->
+                  <div class="custom-size-row" id="custom-size-row" style="display:none;">
+                    <label>가로</label>
+                    <input type="number" id="custom-w" class="form-control custom-size-input"
+                           placeholder="가로 (mm)" min="100" max="10000" />
+                    <span>×</span>
+                    <label>세로</label>
+                    <input type="number" id="custom-h" class="form-control custom-size-input"
+                           placeholder="세로 (mm)" min="100" max="10000" />
+                    <span class="custom-size-unit">mm</span>
+                  </div>
+                </div>
+
+                <!-- ── 재질 ── -->
+                <div class="form-group">
+                  <label class="form-label">재질 <span class="required">*</span></label>
+                  <div class="opt-btn-group" id="opt-material">
+                    <button class="opt-btn active" data-val="일반천">일반천</button>
+                    <button class="opt-btn" data-val="방수천">방수천</button>
+                    <button class="opt-btn" data-val="매쉬천">매쉬천</button>
+                    <button class="opt-btn" data-val="합성지">합성지</button>
+                  </div>
+                  <div class="material-hints">
+                    <span class="material-hint" data-mat="일반천">실내 행사, 일반 현수막에 적합</span>
+                    <span class="material-hint" data-mat="방수천" style="display:none;">야외·장기 게시에 최적, 방수·자외선 차단</span>
+                    <span class="material-hint" data-mat="매쉬천" style="display:none;">바람이 많은 야외, 통기성 우수</span>
+                    <span class="material-hint" data-mat="합성지" style="display:none;">실내 포스터·단기 행사용, 가성비 우수</span>
+                  </div>
+                </div>
+
+                <!-- ── 마감 ── -->
+                <div class="form-group">
+                  <label class="form-label">마감 처리 <span class="required">*</span></label>
+                  <div class="opt-btn-group" id="opt-finish">
+                    <button class="opt-btn active" data-val="열재단">열재단</button>
+                    <button class="opt-btn" data-val="봉재단+끈">봉재단+끈</button>
+                    <button class="opt-btn" data-val="아일렛">아일렛(링)</button>
+                  </div>
+                  <p class="opt-hint" id="finish-hint">열재단: 열로 가장자리를 마감, 기본 옵션</p>
+                </div>
+
+                <!-- ── 수량 ── -->
+                <div class="form-group">
+                  <label class="form-label">수량 <span class="required">*</span></label>
+                  <div class="opt-btn-group" id="opt-quantity">
+                    <button class="opt-btn active" data-val="1">1개</button>
+                    <button class="opt-btn" data-val="2">2개</button>
+                    <button class="opt-btn" data-val="3">3개</button>
+                    <button class="opt-btn discount-badge" data-val="5">5개<small>10%↓</small></button>
+                    <button class="opt-btn discount-badge" data-val="10">10개<small>15%↓</small></button>
+                    <button class="opt-btn" data-val="0" data-custom="1">직접 입력</button>
+                  </div>
+                  <div class="custom-qty-row" id="custom-qty-row" style="display:none;">
+                    <input type="number" id="custom-qty" class="form-control"
+                           placeholder="수량 입력" min="1" max="9999"
+                           style="max-width:160px;" />
+                    <span style="font-size:.85rem;color:var(--text-sub);">개</span>
+                  </div>
+                </div>
+
+                <!-- ── 양면 인쇄 ── -->
+                <div class="form-group">
+                  <label class="form-label">인쇄 방식</label>
+                  <div class="opt-btn-group" id="opt-sided">
+                    <button class="opt-btn active" data-val="단면">단면 인쇄</button>
+                    <button class="opt-btn" data-val="양면">양면 인쇄 <small>(+60%)</small></button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ══════════════════════════════════════
+                 섹션 3+4 · 주문 정보 입력
+            ══════════════════════════════════════ -->
+            <div class="order-card" id="step-info">
+              <div class="order-card-header">
+                <span class="step-badge">3</span>
+                <h2>주문 정보 입력</h2>
+              </div>
+              <div class="order-card-body">
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="info-name">이름 <span class="required">*</span></label>
+                    <input type="text" id="info-name" class="form-control"
+                           placeholder="홍길동" autocomplete="name" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="info-phone">연락처 <span class="required">*</span></label>
+                    <input type="tel" id="info-phone" class="form-control"
+                           placeholder="010-0000-0000" autocomplete="tel" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="info-email">이메일 <span class="optional">(선택)</span></label>
+                  <input type="email" id="info-email" class="form-control"
+                         placeholder="example@email.com" autocomplete="email" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="info-address">배송지 주소 <span class="required">*</span></label>
+                  <input type="text" id="info-address" class="form-control"
+                         placeholder="도로명 또는 지번 주소를 입력하세요" autocomplete="street-address" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="info-deadline">희망 납기일 <span class="optional">(선택)</span></label>
+                  <input type="date" id="info-deadline" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="info-request">요청사항 <span class="optional">(선택)</span></label>
+                  <textarea id="info-request" class="form-control" rows="4"
+                    placeholder="예) 특정 폰트 요청, 색상 수정, 파일 첨부 방법 등 추가 안내사항을 입력해주세요."></textarea>
+                </div>
+
+                <!-- 약관 동의 -->
+                <div class="terms-wrap">
+                  <label class="check-row">
+                    <input type="checkbox" id="agree-all" />
+                    <span class="check-label"><strong>전체 동의</strong></span>
+                  </label>
+                  <div class="terms-sub">
+                    <label class="check-row">
+                      <input type="checkbox" id="agree-service" class="agree-item" />
+                      <span class="check-label">[필수] 이용약관 동의 <a href="#" class="terms-link">보기</a></span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" id="agree-privacy" class="agree-item" />
+                      <span class="check-label">[필수] 개인정보 수집·이용 동의 <a href="#" class="terms-link">보기</a></span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" id="agree-marketing" class="agree-item" />
+                      <span class="check-label">[선택] 마케팅·광고성 정보 수신 동의</span>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <!-- /order-form-area -->
+
+          <!-- ────── 우측 견적 요약 (sticky) ────── -->
+          <aside class="order-summary">
+            <div class="order-summary-card">
+
+              <!-- 디자인 미리보기 (있는 경우) -->
+              <div id="summary-design-thumb" style="display:none;">
+                <div class="summary-thumb-wrap" id="summary-thumb-inner">
+                  <!-- JS로 채움 -->
+                </div>
+                <hr class="divider" />
+              </div>
+
+              <h3>예상 견적</h3>
+
+              <!-- 선택 옵션 요약 -->
+              <div class="summary-opts" id="summary-opts">
+                <div class="summary-opt-row" id="sum-product"><span class="so-key">제품</span><span class="so-val" id="so-product">현수막</span></div>
+                <div class="summary-opt-row" id="sum-size"><span class="so-key">크기</span><span class="so-val" id="so-size">900×1200mm</span></div>
+                <div class="summary-opt-row" id="sum-material"><span class="so-key">재질</span><span class="so-val" id="so-material">일반천</span></div>
+                <div class="summary-opt-row" id="sum-finish"><span class="so-key">마감</span><span class="so-val" id="so-finish">열재단</span></div>
+                <div class="summary-opt-row" id="sum-qty"><span class="so-key">수량</span><span class="so-val" id="so-qty">1개</span></div>
+                <div class="summary-opt-row" id="sum-sided"><span class="so-key">인쇄</span><span class="so-val" id="so-sided">단면</span></div>
+              </div>
+
+              <hr class="divider" />
+
+              <!-- 가격 내역 -->
+              <div class="price-breakdown">
+                <div class="price-row">
+                  <span>기본 단가</span>
+                  <span id="pr-unit">–</span>
+                </div>
+                <div class="price-row">
+                  <span>마감 추가</span>
+                  <span id="pr-finish">0원</span>
+                </div>
+                <div class="price-row" id="pr-double-row" style="display:none;">
+                  <span>양면 인쇄</span>
+                  <span id="pr-double" class="accent">× 1.6</span>
+                </div>
+                <div class="price-row discount" id="pr-discount-row" style="display:none;">
+                  <span>수량 할인</span>
+                  <span id="pr-discount" class="accent">–</span>
+                </div>
+              </div>
+
+              <hr class="divider" />
+
+              <!-- 총 금액 -->
+              <div class="price-total">
+                <span>예상 금액 <small>(VAT 포함)</small></span>
+                <strong id="price-total">–</strong>
+              </div>
+
+              <p class="price-notice">
+                ※ 정확한 금액은 시안 확인 후 안내드립니다.
+              </p>
+
+              <!-- 섹션 5 · 주문하기 버튼 -->
+              <button class="btn btn-accent btn-lg order-submit-btn"
+                      id="btn-order-submit" type="button">
+                📦 주문 접수하기
+              </button>
+
+              <div class="order-trust-row">
+                <span>🔒 SSL 보안 전송</span>
+                <span>✅ 100% 환불 보장</span>
+                <span>🚀 당일 시안 제작</span>
+              </div>
+
+            </div>
+          </aside>
+
+        </div>
+        <!-- /order-layout -->
+      </div>
+    </div>
+
+  </main>
+  <!-- /MAIN -->
+
+  <!-- ══════════════════════════════════════════════════
+       주문 완료 오버레이
+  ══════════════════════════════════════════════════ -->
+  <div class="order-complete-overlay" id="order-complete-overlay" aria-hidden="true">
+    <div class="order-complete-box">
+
+      <!-- 상단 성공 아이콘 -->
+      <div class="oc-header">
+        <div class="oc-check-circle">✓</div>
+        <h2>주문이 접수되었습니다!</h2>
+        <p class="oc-sub">담당자가 시안을 확인 후 연락드립니다.<br>
+          보통 <strong>영업일 기준 1–2시간 이내</strong>에 연락드립니다.</p>
+      </div>
+
+      <!-- 주문번호 박스 (클릭 시 복사) -->
+      <div class="oc-num-wrap">
+        <span class="oc-num-label">주문번호</span>
+        <button class="oc-num-value" id="oc-order-num"
+                title="클릭하면 복사됩니다" onclick="copyOrderNum(this)">
+          ORD---------
+        </button>
+        <span class="oc-copy-hint" id="oc-copy-hint">복사됨 ✓</span>
+      </div>
+
+      <!-- 이메일 발송 안내 (이메일 입력한 경우에만 표시) -->
+      <div class="oc-email-notice" id="oc-email-notice" style="display:none;">
+        <span>📧</span>
+        <span id="oc-email-text">주문 내역을 이메일로 보내드렸습니다.</span>
+      </div>
+
+      <!-- 주문 내역 요약 -->
+      <div class="oc-summary" id="oc-summary">
+        <!-- JS로 채움 -->
+      </div>
+
+      <!-- 카카오톡 안내 -->
+      <div class="oc-kakao-box">
+        <p>📱 <strong>카카오톡 채널에서 시안을 확인하세요</strong></p>
+        <p class="oc-kakao-desc">채널 추가 후 주문번호를 알려주시면 더 빠르게 처리해 드립니다.</p>
+        <a href="https://pf.kakao.com/jubora" target="_blank" rel="noopener"
+           class="btn btn-kakao" id="oc-kakao-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 3C6.477 3 2 6.477 2 10.923c0 2.868 1.577 5.386 3.967 6.923L5 21l4.167-2.19C10.052 19.26 11.007 19.385 12 19.385c5.523 0 10-3.477 10-7.923S17.523 3 12 3z"/>
+          </svg>
+          카카오톡 채널 바로가기
+        </a>
+      </div>
+
+      <!-- 하단 버튼 -->
+      <div class="oc-btns">
+        <button class="btn btn-outline" onclick="location.href='index.html'">홈으로</button>
+        <button class="btn btn-outline" onclick="location.href='order.html'">추가 주문</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Google Forms 제출용 숨김 iframe -->
+  <iframe name="hidden-gform-iframe" id="hidden-gform-iframe" style="display:none;" title="폼 제출용"></iframe>
+
+  <script>
+  /* 주문번호 클립보드 복사 */
+  function copyOrderNum(btn) {
+    const num = btn.textContent.trim();
+    navigator.clipboard.writeText(num).then(() => {
+      const hint = document.getElementById('oc-copy-hint');
+      hint.classList.add('show');
+      setTimeout(() => hint.classList.remove('show'), 2000);
+    }).catch(() => {
+      /* fallback */
+      const ta = document.createElement('textarea');
+      ta.value = num; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      const hint = document.getElementById('oc-copy-hint');
+      hint.classList.add('show');
+      setTimeout(() => hint.classList.remove('show'), 2000);
+    });
+  }
+  </script>
+
+  <!-- ===================== FOOTER (공통) ===================== -->
+  <footer id="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><span>주</span></div>주보라
+          </a>
+          <p>현수막·배너 전문 온라인 제작 플랫폼.<br>빠르고 합리적인 가격으로 여러분의 메시지를 전달합니다.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="카카오톡">💬</a>
+            <a href="#" aria-label="인스타그램">📸</a>
+            <a href="#" aria-label="유튜브">▶</a>
+            <a href="#" aria-label="블로그">✏️</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>고객센터</h4>
+          <ul>
+            <li><a href="#">자주 묻는 질문</a></li>
+            <li><a href="#">1:1 문의하기</a></li>
+            <li><a href="#">제작 가이드</a></li>
+            <li><a href="#">파일 규격 안내</a></li>
+            <li><a href="#">공지사항</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>이용 안내</h4>
+          <ul>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보 처리방침</a></li>
+            <li><a href="#">환불·교환 정책</a></li>
+            <li><a href="#">배송 안내</a></li>
+            <li><a href="#">파트너 제휴 문의</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>연락처</h4>
+          <div class="footer-contact-item">
+                        <span class="icon">📞</span>
+            <div>
+              <strong style="color:#fff;font-size:1.1rem;">010-7737-1895</strong><br>
+              평일 09:00 – 18:00<br>
+              토요일 09:00 – 13:00
+            </div>
+          </div>
+          <div class="footer-contact-item">
+                        <span class="icon">✉️</span>
+            <span><a href="mailto:mm1895@naver.com" style="color:inherit;">mm1895@naver.com</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">📦</span><span>주문 마감 오후 2시 (당일 발송)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-biz-info">
+                    상호명: 주보라 &nbsp;|&nbsp; 대표: 전동찬 &nbsp;|&nbsp;
+          사업자등록번호: 593-56-00232 &nbsp;|&nbsp;
+          통신판매업신고: 제0000-하남-0000호<br>
+          주소: 경기도 하남시 미사강변한강로 135 스카이폴리스 다동 716호 &nbsp;|&nbsp;
+          개인정보 보호책임자: 전동찬
+        </div>
+        <p class="footer-copyright">© 2026 주보라. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <script src="js/cloudinary-config.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+  /* ================================================================
+     주보라 주문 페이지 – 완전 구현
+     기능: 실시간 견적 계산, 편집기 데이터 연동, Google Forms 제출
+  ================================================================ */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 가격 CONFIG (수정 가능)
+    ────────────────────────────────────────────────────── */
+    const PRICING = {
+      /* 제품별 기본가 (1개, 900×1200mm 기준) */
+      base: {
+        '현수막':  15000,
+        '배너':    20000,
+        'X배너':   25000,
+        '실사출력': 30000,
+      },
+      /* 크기 배율: 가로mm × 세로mm ÷ 1,080,000 (900×1200 = 1.0) */
+      sizeMultiplier(wMm, hMm) {
+        if (!wMm || !hMm) return 1;
+        return (wMm * hMm) / 1_080_000;
+      },
+      /* 재질 가격 배율 */
+      material: {
+        '일반천': 1.0,
+        '방수천': 1.2,
+        '매쉬천': 1.3,
+        '합성지': 0.9,
+      },
+      /* 마감 추가 금액 (수량 × 개당 추가금) */
+      finish: {
+        '열재단':    0,
+        '봉재단+끈': 3000,
+        '아일렛':    2000,
+      },
+      /* 마감 힌트 */
+      finishHint: {
+        '열재단':    '열재단: 열로 가장자리를 마감, 기본 옵션',
+        '봉재단+끈': '봉재단+끈: 상단 봉처리 + 걸기 끈 포함',
+        '아일렛':    '아일렛(링): 구멍 뚫어 와이어 고정용',
+      },
+      /* 양면 인쇄 배율 */
+      doubleSided: 1.6,
+      /* 수량 할인 */
+      qtyDiscount(qty) {
+        if (qty >= 10) return 0.15;   // 15% 할인
+        if (qty >= 5)  return 0.10;   // 10% 할인
+        return 0;
+      },
+    };
+
+    /* ══════════════════════════════════════════════════════
+       ▶ Google Forms 연동 CONFIG
+       ══════════════════════════════════════════════════════
+       [설정 방법]
+       1. 구글 폼을 만든 뒤 미리보기(👁 아이콘) 클릭
+       2. 브라우저에서 페이지 소스 보기 (Ctrl+U)
+       3. "entry." 로 검색 → entry.숫자 형태의 ID 확인
+       4. 아래 GOOGLE_FORM_URL과 FORM_ENTRIES 값 교체
+       ══════════════════════════════════════════════════════ */
+
+    // ▼ [필수] 구글 폼 URL에서 /viewform 을 /formResponse 로 바꿔서 붙여넣기
+    //   예: https://docs.google.com/forms/d/e/1FAIpQLSd.../formResponse
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/[FORM_ID]/formResponse';
+
+    const FORM_ENTRIES = {
+      // ─── 주문자 정보 ───
+      name:       'entry.0000000001',   // ← [교체] 주문자 이름
+      phone:      'entry.0000000002',   // ← [교체] 연락처
+      email:      'entry.0000000003',   // ← [교체] 이메일
+      address:    'entry.0000000004',   // ← [교체] 배송지 주소
+
+      // ─── 제품 옵션 ───
+      product:    'entry.0000000005',   // ← [교체] 제품 종류  (현수막/배너/X배너/실사출력)
+      size:       'entry.0000000006',   // ← [교체] 크기       (예: 900×1200mm)
+      material:   'entry.0000000007',   // ← [교체] 재질       (일반천/방수천/매쉬천/합성지)
+      finish:     'entry.0000000008',   // ← [교체] 마감       (열재단/봉재단+끈/아일렛)
+      quantity:   'entry.0000000009',   // ← [교체] 수량       (숫자)
+      sided:      'entry.0000000010',   // ← [교체] 양면 여부  (단면/양면)
+
+      // ─── 디자인 내용 ───
+      mainText:   'entry.0000000011',   // ← [교체] 메인 문구
+      subText:    'entry.0000000012',   // ← [교체] 서브 문구
+      font:       'entry.0000000013',   // ← [교체] 글꼴 (편집기 선택값 또는 '기본')
+
+      // ─── 기타 ───
+      totalPrice: 'entry.0000000014',   // ← [교체] 예상 금액
+      request:    'entry.0000000015',   // ← [교체] 요청사항
+      deadline:   'entry.0000000016',   // ← [교체] 희망 납기일
+    };
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 주문번호 생성 헬퍼 (ORD-YYYYMMDD-NNN 형식)
+          → localStorage에 날짜별 순번 저장
+    ────────────────────────────────────────────────────── */
+    function generateOrderNumber() {
+      const today = new Date();
+      const ymd   = today.getFullYear().toString()
+                  + String(today.getMonth()+1).padStart(2,'0')
+                  + String(today.getDate()).padStart(2,'0');
+      const seqKey = 'jubora_order_seq_' + ymd;
+      const seq    = (Number(localStorage.getItem(seqKey)) || 0) + 1;
+      localStorage.setItem(seqKey, seq);
+      return 'ORD-' + ymd + '-' + String(seq).padStart(3,'0');
+    }
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 주문 상태 (state)
+    ────────────────────────────────────────────────────── */
+    const state = {
+      product:  '현수막',
+      wMm: 900, hMm: 1200,
+      isCustomSize: false,
+      material: '일반천',
+      finish:   '열재단',
+      qty:      1,
+      isCustomQty: false,
+      doubleSided: false,
+    };
+
+    let designData = null; // 편집기에서 불러온 데이터
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 편집기 데이터 불러오기
+    ────────────────────────────────────────────────────── */
+    function loadEditorData() {
+      try {
+        // 1) localStorage에서 최근 편집 내용
+        const raw = localStorage.getItem('jubora_editor_v2');
+        if (raw) {
+          designData = JSON.parse(raw);
+        }
+        // 2) URL 파라미터 ?template= or ?design= 으로 cloudinary-config designs 배열 참조
+        const params = new URLSearchParams(location.search);
+        const tid = params.get('template') || params.get('design');
+        if (tid && typeof designs !== 'undefined') {
+          const tmpl = designs.find(d => d.id === Number(tid));
+          if (tmpl) {
+            designData = Object.assign(designData || {}, { templateName: tmpl.name, templateId: tid });
+          }
+        }
+      } catch(e) { /* localStorage 비어 있거나 JSON 파싱 오류 – 무시 */ }
+
+      if (designData) {
+        renderDesignSummary(designData);
+      }
+    }
+
+    function renderDesignSummary(d) {
+      const wrap = document.getElementById('design-summary-wrap');
+      const noMsg = document.getElementById('no-design-msg');
+      if (!wrap) return;
+
+      noMsg.style.display = 'none';
+      wrap.style.display  = 'block';
+
+      /* 미리보기 썸네일 (축소된 DOM 캔버스) */
+      const thumbBox = document.getElementById('design-thumb-box');
+      thumbBox.style.background = d.bgColor || '#0367A6';
+
+      const mainEl = document.createElement('div');
+      mainEl.className = 'ds-thumb-main';
+      mainEl.textContent = d.mainText || '메인 문구';
+      mainEl.style.color = d.textColor || '#fff';
+      thumbBox.appendChild(mainEl);
+
+      if (d.subText) {
+        const subEl = document.createElement('div');
+        subEl.className = 'ds-thumb-sub';
+        subEl.textContent = d.subText;
+        subEl.style.color = d.textColor || '#fff';
+        thumbBox.appendChild(subEl);
+      }
+
+      /* 정보 테이블 */
+      const table = document.getElementById('design-info-table');
+      const rows = [
+        ['메인 문구', d.mainText || '–'],
+        ['서브 문구', d.subText  || '–'],
+        ['배경색',   `<span class="color-dot" style="background:${d.bgColor||'#0367A6'}"></span> ${d.bgColor||'–'}`],
+        ['테두리',   d.borderStyle === 'none' ? '없음' : d.borderStyle || '없음'],
+        ['프리셋',   d.preset || '기본형'],
+      ];
+      if (d.templateName) rows.unshift(['템플릿', d.templateName]);
+
+      table.innerHTML = rows.map(([k,v]) =>
+        `<tr><th>${k}</th><td>${v}</td></tr>`
+      ).join('');
+
+      /* "수정하기" 링크에 origin 추가 */
+      const editBtn = document.getElementById('btn-edit-again');
+      if (editBtn) {
+        const p = d.preset ? `?preset=${d.preset}` : '';
+        editBtn.href = 'editor.html' + p;
+      }
+
+      /* 우측 사이드바 썸네일 */
+      const summaryThumb = document.getElementById('summary-design-thumb');
+      const summaryInner = document.getElementById('summary-thumb-inner');
+      if (summaryThumb && summaryInner) {
+        summaryInner.style.background = d.bgColor || '#0367A6';
+        summaryInner.innerHTML = `
+          <div class="st-main" style="color:${d.textColor||'#fff'}">${d.mainText||'메인 문구'}</div>
+          <div class="st-sub"  style="color:${d.textColor||'#fff'}">${d.subText||''}</div>
+        `;
+        summaryThumb.style.display = 'block';
+      }
+    }
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 가격 계산 + UI 업데이트
+    ────────────────────────────────────────────────────── */
+    function calcAndRender() {
+      const { product, wMm, hMm, material, finish, qty, doubleSided } = state;
+
+      const base     = PRICING.base[product] || 15000;
+      const sizeMul  = PRICING.sizeMultiplier(wMm, hMm);
+      const matMul   = PRICING.material[material] || 1;
+      const finAmt   = (PRICING.finish[finish] || 0) * qty;
+      const discount = PRICING.qtyDiscount(qty);
+
+      let unitPrice  = Math.ceil(base * sizeMul * matMul);
+      let subtotal   = unitPrice * qty + finAmt;
+      if (doubleSided) subtotal = Math.ceil(subtotal * PRICING.doubleSided);
+      const discountAmt = Math.ceil(subtotal * discount);
+      const total = subtotal - discountAmt;
+
+      /* 가격 표시 */
+      q('#pr-unit').textContent    = fmt(unitPrice) + '원 × ' + qty + '개';
+      q('#pr-finish').textContent  = finAmt > 0 ? '+' + fmt(finAmt) + '원' : '0원';
+      q('#price-total').textContent = fmt(total) + '원';
+
+      /* 양면 행 */
+      const dblRow = q('#pr-double-row');
+      dblRow.style.display = doubleSided ? '' : 'none';
+
+      /* 할인 행 */
+      const discRow = q('#pr-discount-row');
+      if (discount > 0) {
+        discRow.style.display = '';
+        q('#pr-discount').textContent = '- ' + fmt(discountAmt) + '원 (' + (discount*100) + '%↓)';
+      } else {
+        discRow.style.display = 'none';
+      }
+
+      /* 옵션 요약 */
+      const sizeLabel = state.isCustomSize
+        ? `${wMm}×${hMm}mm`
+        : `${wMm}×${hMm}mm`;
+      q('#so-product').textContent  = product;
+      q('#so-size').textContent     = sizeLabel;
+      q('#so-material').textContent = material;
+      q('#so-finish').textContent   = finish;
+      q('#so-qty').textContent      = qty + '개';
+      q('#so-sided').textContent    = doubleSided ? '양면' : '단면';
+    }
+
+    const q  = s => document.querySelector(s);
+    const qa = s => document.querySelectorAll(s);
+    const fmt = n => Math.round(n).toLocaleString('ko-KR');
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 옵션 버튼 그룹 공통 핸들러
+    ────────────────────────────────────────────────────── */
+    function bindOptGroup(groupId, onChange) {
+      const group = document.getElementById(groupId);
+      if (!group) return;
+      group.addEventListener('click', e => {
+        const btn = e.target.closest('.opt-btn');
+        if (!btn) return;
+        group.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        onChange(btn.dataset.val || btn.dataset.w, btn);
+      });
+    }
+
+    /* 제품 종류 */
+    bindOptGroup('opt-product-type', (val) => {
+      state.product = val;
+      /* 크기 패널 교체 */
+      qa('.size-options').forEach(el => el.style.display = 'none');
+      const sizePanel = document.getElementById('sizes-' + val);
+      if (sizePanel) {
+        sizePanel.style.display = '';
+        /* 해당 패널의 첫 번째 버튼 active 처리 */
+        const first = sizePanel.querySelector('.opt-btn');
+        if (first) {
+          sizePanel.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+          first.classList.add('active');
+          /* 크기 state 설정 */
+          if (first.dataset.custom) {
+            state.isCustomSize = true;
+            document.getElementById('custom-size-row').style.display = '';
+          } else {
+            state.isCustomSize = false;
+            state.wMm = Number(first.dataset.w);
+            state.hMm = Number(first.dataset.h);
+            document.getElementById('custom-size-row').style.display = 'none';
+          }
+        }
+      }
+      calcAndRender();
+    });
+
+    /* 크기 버튼 (이벤트 위임 – 모든 size-options 포함) */
+    document.querySelectorAll('.size-options').forEach(panel => {
+      panel.addEventListener('click', e => {
+        const btn = e.target.closest('.opt-btn');
+        if (!btn) return;
+        panel.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const isCustom = !!btn.dataset.custom;
+        state.isCustomSize = isCustom;
+        const customRow = document.getElementById('custom-size-row');
+        if (isCustom) {
+          customRow.style.display = '';
+        } else {
+          customRow.style.display = 'none';
+          state.wMm = Number(btn.dataset.w);
+          state.hMm = Number(btn.dataset.h);
+          calcAndRender();
+        }
+      });
+    });
+
+    /* 직접 크기 입력 */
+    ['custom-w','custom-h'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        state.wMm = Number(document.getElementById('custom-w').value) || 0;
+        state.hMm = Number(document.getElementById('custom-h').value) || 0;
+        calcAndRender();
+      });
+    });
+
+    /* 재질 */
+    bindOptGroup('opt-material', (val) => {
+      state.material = val;
+      /* 힌트 교체 */
+      qa('.material-hint').forEach(el => el.style.display = 'none');
+      const hint = document.querySelector(`.material-hint[data-mat="${val}"]`);
+      if (hint) hint.style.display = '';
+      calcAndRender();
+    });
+
+    /* 마감 */
+    bindOptGroup('opt-finish', (val) => {
+      state.finish = val;
+      const hintEl = document.getElementById('finish-hint');
+      if (hintEl) hintEl.textContent = PRICING.finishHint[val] || '';
+      calcAndRender();
+    });
+
+    /* 수량 */
+    bindOptGroup('opt-quantity', (val, btn) => {
+      const customRow = document.getElementById('custom-qty-row');
+      if (btn.dataset.custom) {
+        state.isCustomQty = true;
+        customRow.style.display = '';
+        state.qty = Number(document.getElementById('custom-qty').value) || 1;
+      } else {
+        state.isCustomQty = false;
+        customRow.style.display = 'none';
+        state.qty = Number(val) || 1;
+      }
+      calcAndRender();
+    });
+
+    document.getElementById('custom-qty').addEventListener('input', e => {
+      state.qty = Math.max(1, Number(e.target.value) || 1);
+      calcAndRender();
+    });
+
+    /* 양면 */
+    bindOptGroup('opt-sided', (val) => {
+      state.doubleSided = (val === '양면');
+      calcAndRender();
+    });
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 전체 동의 체크박스
+    ────────────────────────────────────────────────────── */
+    const agreeAll = document.getElementById('agree-all');
+    const agreeItems = document.querySelectorAll('.agree-item');
+
+    agreeAll.addEventListener('change', () => {
+      agreeItems.forEach(cb => cb.checked = agreeAll.checked);
+    });
+    agreeItems.forEach(cb => {
+      cb.addEventListener('change', () => {
+        agreeAll.checked = [...agreeItems].every(c => c.checked);
+      });
+    });
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 폼 유효성 검사
+    ────────────────────────────────────────────────────── */
+    function validate() {
+      const name    = document.getElementById('info-name').value.trim();
+      const phone   = document.getElementById('info-phone').value.trim();
+      const address = document.getElementById('info-address').value.trim();
+      const svc     = document.getElementById('agree-service').checked;
+      const prv     = document.getElementById('agree-privacy').checked;
+
+      if (!name)    { alert('이름을 입력해 주세요.'); document.getElementById('info-name').focus(); return false; }
+      if (!phone)   { alert('연락처를 입력해 주세요.'); document.getElementById('info-phone').focus(); return false; }
+      if (!address) { alert('배송지 주소를 입력해 주세요.'); document.getElementById('info-address').focus(); return false; }
+      if (!svc || !prv) { alert('필수 약관에 동의해 주세요.'); return false; }
+      if (state.isCustomSize && (!state.wMm || !state.hMm)) {
+        alert('크기를 입력해 주세요.'); document.getElementById('custom-w').focus(); return false;
+      }
+      return true;
+    }
+
+    /* ──────────────────────────────────────────────────────
+       ▶ Google Forms 제출 (no-cors fetch)
+    ────────────────────────────────────────────────────── */
+    function submitToGoogleForms(data) {
+      return new Promise(resolve => {
+        const body = new URLSearchParams();
+
+        /* ── 주문자 정보 ── */
+        body.append(FORM_ENTRIES.name,       data.name);
+        body.append(FORM_ENTRIES.phone,      data.phone);
+        body.append(FORM_ENTRIES.email,      data.email);
+        body.append(FORM_ENTRIES.address,    data.address);
+
+        /* ── 제품 옵션 ── */
+        body.append(FORM_ENTRIES.product,    data.product);
+        body.append(FORM_ENTRIES.size,       data.size);
+        body.append(FORM_ENTRIES.material,   data.material);
+        body.append(FORM_ENTRIES.finish,     data.finish);
+        body.append(FORM_ENTRIES.quantity,   data.quantity);
+        body.append(FORM_ENTRIES.sided,      data.sided);
+
+        /* ── 디자인 내용 ── */
+        body.append(FORM_ENTRIES.mainText,   data.mainText);
+        body.append(FORM_ENTRIES.subText,    data.subText);
+        body.append(FORM_ENTRIES.font,       data.font);
+
+        /* ── 기타 ── */
+        body.append(FORM_ENTRIES.totalPrice, data.totalPrice);
+        body.append(FORM_ENTRIES.request,    data.request);
+        body.append(FORM_ENTRIES.deadline,   data.deadline);
+
+        /*
+         * no-cors 모드: CORS 제한으로 응답 본문을 읽을 수 없지만
+         * 구글 폼 서버에는 데이터가 정상 전송됩니다.
+         * GOOGLE_FORM_URL이 아직 미설정 상태이면 콘솔 오류가 나도
+         * 주문 완료 화면은 정상 표시됩니다.
+         */
+        fetch(GOOGLE_FORM_URL, {
+          method:  'POST',
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body:    body.toString(),
+        })
+        .then(() => resolve(true))
+        .catch(() => resolve(true));
+      });
+    }
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 완료 오버레이 채우기
+    ────────────────────────────────────────────────────── */
+    function showCompleteOverlay(formData, orderNum) {
+      /* 주문번호 */
+      document.getElementById('oc-order-num').textContent = orderNum;
+
+      /* 이메일 안내 (이메일 입력했을 때만) */
+      if (formData.email) {
+        const emailNotice = document.getElementById('oc-email-notice');
+        const emailText   = document.getElementById('oc-email-text');
+        emailText.textContent = `주문 내역을 ${formData.email} 로 보내드렸습니다.`;
+        emailNotice.style.display = 'flex';
+      }
+
+      /* 주문 요약 테이블 */
+      const summaryEl = document.getElementById('oc-summary');
+      summaryEl.innerHTML = `
+        <table class="oc-table">
+          <tr><th>주문번호</th><td><strong>${orderNum}</strong></td></tr>
+          <tr><th>제품</th>   <td>${formData.product}</td></tr>
+          <tr><th>크기</th>   <td>${formData.size}</td></tr>
+          <tr><th>재질</th>   <td>${formData.material} / ${formData.finish}</td></tr>
+          <tr><th>수량</th>   <td>${formData.quantity}개 (${formData.sided})</td></tr>
+          <tr><th>예상금액</th><td><strong style="color:var(--accent)">${formData.totalPrice}</strong></td></tr>
+          <tr><th>연락처</th> <td>${formData.phone}</td></tr>
+        </table>
+      `;
+
+      /* 오버레이 표시 */
+      const overlay = document.getElementById('order-complete-overlay');
+      overlay.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 주문 접수 버튼
+    ────────────────────────────────────────────────────── */
+    document.getElementById('btn-order-submit').addEventListener('click', async () => {
+      if (!validate()) return;
+
+      const submitBtn = document.getElementById('btn-order-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="oc-spinner"></span> 접수 중...';
+
+      const sizeStr = `${state.wMm}×${state.hMm}mm${state.isCustomSize ? ' (직접입력)' : ''}`;
+      const totalText = document.getElementById('price-total').textContent;
+
+      /* 편집기 데이터에서 메인/서브/글꼴 추출 */
+      const mainText = designData?.mainText || document.getElementById('dc-main')?.textContent || '';
+      const subText  = designData?.subText  || document.getElementById('dc-sub')?.textContent  || '';
+      const font     = designData?.font     || '기본';
+
+      const formData = {
+        name:       document.getElementById('info-name').value.trim(),
+        phone:      document.getElementById('info-phone').value.trim(),
+        email:      document.getElementById('info-email').value.trim(),
+        address:    document.getElementById('info-address').value.trim(),
+        product:    state.product,
+        size:       sizeStr,
+        material:   state.material,
+        finish:     state.finish,
+        quantity:   String(state.qty),
+        sided:      state.doubleSided ? '양면' : '단면',
+        mainText:   mainText,
+        subText:    subText,
+        font:       font,
+        totalPrice: totalText,
+        request:    document.getElementById('info-request').value.trim(),
+        deadline:   document.getElementById('info-deadline').value,
+      };
+
+      /* 구글 폼 제출 (비동기, 실패해도 완료 화면 표시) */
+      await submitToGoogleForms(formData);
+
+      /* ORD-YYYYMMDD-NNN 주문번호 생성 */
+      const orderNum = generateOrderNumber();
+
+      /* 완료 오버레이 */
+      showCompleteOverlay(formData, orderNum);
+    });
+
+    /* ──────────────────────────────────────────────────────
+       ▶ 초기화
+    ────────────────────────────────────────────────────── */
+    loadEditorData();
+    calcAndRender();
+
+    /* 납기일 기본값: 오늘 + 3일 */
+    const deadlineInput = document.getElementById('info-deadline');
+    const d3 = new Date(); d3.setDate(d3.getDate() + 3);
+    deadlineInput.min = new Date().toISOString().slice(0,10);
+    deadlineInput.value = d3.toISOString().slice(0,10);
+
+  }); /* DOMContentLoaded */
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# =====================================================
+#  주보라 – Netlify _redirects
+#  우선순위: netlify.toml > _redirects
+# =====================================================
+
+# 404 폴백 – 없는 페이지 접근 시 404.html 표시
+/*    /404.html   404
+
+# 구 URL 리다이렉트 (나중에 URL 구조 바꿀 경우 여기에 추가)
+# /old-page    /new-page    301
+
+# www → non-www (Netlify DNS 사용 시 자동 처리되지만 명시)
+# https://www.jubora.kr/*   https://jubora.kr/:splat   301!

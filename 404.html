@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>페이지를 찾을 수 없습니다 – 주보라</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .not-found-wrap {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      gap: 16px;
+    }
+    .nf-code {
+      font-size: 6rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+    .nf-icon { font-size: 2.5rem; margin-bottom: 4px; }
+    .nf-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .nf-desc {
+      font-size: .95rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      max-width: 380px;
+    }
+    .nf-btns {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nf-search {
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      width: 100%;
+    }
+    .nf-search input {
+      flex: 1;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: .9rem;
+      outline: none;
+    }
+    .nf-search input:focus { border-color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 (간소화) -->
+  <header id="site-header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><span>주</span></div>
+          <div>주보라<span class="logo-sub">현수막·배너 전문</span></div>
+        </a>
+        <nav style="margin-left:auto;">
+          <a href="index.html" class="btn btn-outline btn-sm">홈으로</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="not-found-wrap">
+      <div class="nf-code">404</div>
+      <div class="nf-icon">🔍</div>
+      <h1 class="nf-title">페이지를 찾을 수 없습니다</h1>
+      <p class="nf-desc">
+        요청하신 페이지가 존재하지 않거나 이동된 것 같습니다.<br>
+        아래 버튼으로 원하시는 페이지로 이동해 보세요.
+      </p>
+
+      <div class="nf-btns">
+        <a href="index.html"     class="btn btn-primary">🏠 홈으로 가기</a>
+        <a href="templates.html" class="btn btn-outline">🎨 템플릿 보기</a>
+        <a href="order.html"     class="btn btn-outline">📦 주문하기</a>
+      </div>
+
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border);width:100%;max-width:400px;">
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">도움이 필요하시면 카카오톡으로 문의하세요</p>
+        <a href="https://pf.kakao.com/jubora" target="_blank" rel="noopener"
+           class="btn" style="background:#FEE500;color:#391B1B;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+          💬 카카오톡 문의
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-biz-info">
+          상호명: 주보라 &nbsp;|&nbsp; 대표: 전동찬 &nbsp;|&nbsp; 사업자등록번호: 593-56-00232
+        </div>
+        <p class="footer-copyright">© 2026 주보라. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

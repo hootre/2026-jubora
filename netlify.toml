@@ -1,0 +1,76 @@
+# =====================================================
+#  주보라 (jubora.kr) – Netlify 설정 파일
+#  정적 사이트 / 빌드 없음
+# =====================================================
+
+[build]
+  # 빌드 명령 없음 (순수 정적 HTML/CSS/JS)
+  command   = ""
+  publish   = "."
+
+# ── 환경 변수 (필요 시 추가) ──────────────────────────
+[build.environment]
+  NODE_VERSION = "20"
+
+# =====================================================
+#  리다이렉트 규칙
+# =====================================================
+
+# 404 → index.html (SPA 방식 폴백)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
+
+# =====================================================
+#  캐시 헤더 (성능 최적화)
+# =====================================================
+
+# HTML – 캐시 안 함 (항상 최신 버전)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# CSS – 1년 캐시 (파일명 변경 시 새로고침)
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# JS – 1년 캐시
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 이미지/SVG – 1주일 캐시
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# 폰트 – 1년 캐시
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# =====================================================
+#  보안 헤더 (전체 페이지 공통)
+# =====================================================
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options         = "SAMEORIGIN"
+    X-Content-Type-Options  = "nosniff"
+    Referrer-Policy         = "strict-origin-when-cross-origin"
+    Permissions-Policy      = "camera=(), microphone=(), geolocation=()"

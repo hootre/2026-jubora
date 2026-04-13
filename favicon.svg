@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- 배경 -->
+  <rect width="32" height="32" rx="7" fill="#0367A6"/>
+  <!-- 현수막 심볼 (작은 버전) -->
+  <rect x="5" y="8"  width="22" height="3" rx="1.5" fill="#FEE500"/>
+  <rect x="5" y="14" width="22" height="4" rx="2"   fill="white"/>
+  <rect x="5" y="21" width="15" height="3" rx="1.5" fill="rgba(255,255,255,0.55)"/>
+  <!-- 걸이 구멍 -->
+  <circle cx="7"  cy="6" r="1.5" fill="none" stroke="#FEE500" stroke-width="1.2"/>
+  <circle cx="25" cy="6" r="1.5" fill="none" stroke="#FEE500" stroke-width="1.2"/>
+</svg>

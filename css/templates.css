@@ -1,0 +1,543 @@
+/* =============================================
+   templates.html 전용 스타일
+   ============================================= */
+
+/* =============================================
+   카테고리 탭 바 (sticky)
+   ============================================= */
+.tpl-tab-bar {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 118px; /* 헤더 높이 */
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+
+.tpl-tab-list {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tpl-tab-list::-webkit-scrollbar { display: none; }
+
+.tpl-tab {
+  flex-shrink: 0;
+  padding: 14px 22px;
+  border: none;
+  background: none;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  cursor: pointer;
+  position: relative;
+  transition: color .2s ease;
+  white-space: nowrap;
+}
+.tpl-tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background .2s ease;
+}
+.tpl-tab:hover { color: var(--primary); }
+.tpl-tab.active { color: var(--primary); }
+.tpl-tab.active::after { background: var(--primary); }
+
+
+/* =============================================
+   2열 레이아웃
+   ============================================= */
+.templates-section { background: var(--bg-page); }
+
+.templates-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+
+/* =============================================
+   필터 패널 (좌측)
+   ============================================= */
+.filter-panel {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  position: sticky;
+  top: 172px; /* tab-bar 아래 */
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.filter-header h3 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.filter-group:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.filter-group h4 {
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 12px;
+}
+
+.filter-check-list { display: flex; flex-direction: column; gap: 4px; }
+
+.filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .15s ease;
+  font-size: .88rem;
+  color: var(--text-main);
+}
+.filter-check:hover { background: var(--primary-light); }
+.filter-check input[type="checkbox"],
+.filter-check input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.filter-check span { flex: 1; }
+.filter-count {
+  font-size: .75rem;
+  font-style: normal;
+  color: var(--text-muted);
+  background: var(--bg-page);
+  padding: 1px 6px;
+  border-radius: 50px;
+  min-width: 22px;
+  text-align: center;
+}
+
+
+/* =============================================
+   툴바
+   ============================================= */
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+}
+
+.toolbar-left { display: flex; align-items: center; gap: 12px; }
+.toolbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.result-count { font-size: .88rem; color: var(--text-sub); }
+.result-count strong { color: var(--primary); font-size: 1rem; }
+
+/* 검색 */
+.tpl-search-wrap {
+  position: relative;
+}
+.tpl-search-wrap .form-control {
+  padding-left: 14px;
+  padding-right: 36px;
+  width: 200px;
+}
+.tpl-search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .9rem;
+  pointer-events: none;
+}
+
+/* 뷰 토글 */
+.view-toggle {
+  display: flex;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.view-btn {
+  padding: 7px 12px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: all .18s;
+}
+.view-btn.active,
+.view-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+
+/* =============================================
+   활성 필터 칩
+   ============================================= */
+.active-filters {
+  display: none;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: var(--primary-light);
+  border-radius: 8px;
+  border: 1px solid rgba(3,103,166,.15);
+}
+
+.af-label {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.af-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: #fff;
+  border: 1px solid var(--primary);
+  padding: 4px 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all .18s;
+}
+.af-chip:hover { background: var(--primary); color: #fff; }
+.af-clear {
+  font-size: .78rem;
+  color: var(--text-sub);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 6px;
+  margin-left: 4px;
+}
+.af-clear:hover { color: var(--accent); }
+
+
+/* =============================================
+   카드 그리드 (4열)
+   ============================================= */
+.tpl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+/* ── 카드 ── */
+.tpl-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all .25s ease;
+  cursor: default;
+}
+.tpl-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,.1);
+  transform: translateY(-3px);
+  border-color: rgba(3,103,166,.25);
+}
+
+/* 이미지 영역 */
+.tpl-card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* 그라디언트 배경 (fallback) */
+.tpl-card-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.tpl-card-bg span {
+  font-size: .78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Cloudinary 이미지 (그라디언트 위에 덮어씀) */
+.tpl-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform .3s ease, opacity .3s;
+}
+.tpl-card:hover .tpl-card-img { transform: scale(1.04); }
+
+/* 호버 오버레이 */
+.tpl-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity .22s ease;
+}
+.tpl-card:hover .tpl-card-overlay { opacity: 1; }
+.tpl-card-overlay .btn-outline {
+  border-color: rgba(255,255,255,.7);
+  color: #fff;
+  background: rgba(255,255,255,.1);
+}
+
+/* 카드 본문 */
+.tpl-card-body { padding: 12px 14px 14px; }
+
+.tpl-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.tpl-cat-badge {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tpl-tag {
+  display: inline-block;
+  font-size: .68rem;
+  color: var(--text-sub);
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.tpl-card-name {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tpl-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tpl-card-price {
+  font-size: .92rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+
+/* =============================================
+   리스트 뷰
+   ============================================= */
+.tpl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.tpl-card--list {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  border-radius: 10px;
+}
+
+.tpl-card--list .tpl-card-media {
+  aspect-ratio: auto;
+  height: 130px;
+  border-radius: 0;
+}
+
+.tpl-card--list .tpl-card-body {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tpl-card--list .tpl-card-name {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  -webkit-line-clamp: 1;
+}
+
+.tpl-card--list .tpl-card-footer {
+  margin-top: auto;
+}
+
+.tpl-card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+
+
+/* =============================================
+   빈 결과
+   ============================================= */
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 24px;
+  text-align: center;
+  background: #fff;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  margin-bottom: 28px;
+}
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-state h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.empty-state p  { font-size: .9rem; color: var(--text-sub); margin-bottom: 24px; }
+
+
+/* =============================================
+   페이지네이션
+   ============================================= */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px 0 4px;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.page-btn:hover:not(:disabled):not(.active) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+.page-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.page-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+.page-ellipsis {
+  min-width: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .88rem;
+  line-height: 38px;
+}
+
+
+/* =============================================
+   반응형
+   ============================================= */
+
+/* 태블릿: 2열 카드 */
+@media (max-width: 1100px) {
+  .tpl-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .templates-layout {
+    grid-template-columns: 1fr;
+  }
+  .filter-panel {
+    position: static;
+    /* 모바일: 필터 접기 가능하도록 */
+  }
+  .tpl-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .tpl-tab-bar { top: 0; } /* 모바일: 헤더 없을 때 */
+}
+
+@media (max-width: 640px) {
+  .tpl-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .tpl-card-body { padding: 10px 12px 12px; }
+  .tpl-card-name { font-size: .82rem; }
+  .tpl-card-footer .btn { font-size: .75rem; padding: 6px 10px; }
+
+  .list-toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar-right { flex-wrap: wrap; gap: 8px; }
+  .tpl-search-wrap .form-control { width: 100%; }
+
+  .tpl-card--list { grid-template-columns: 120px 1fr; }
+  .tpl-card--list .tpl-card-media { height: 100px; }
+}
+
+@media (max-width: 420px) {
+  .tpl-grid { grid-template-columns: 1fr; }
+  .tpl-card-media { aspect-ratio: 16/9; }
+}

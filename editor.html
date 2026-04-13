@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>현수막 온라인 편집기 | 주보라 – 직접 디자인하고 주문하기</title>
+  <meta name="description" content="주보라 온라인 편집기로 현수막·배너 디자인을 직접 만들어보세요. 문구·색상·크기를 자유롭게 편집하고 바로 주문까지 한 번에." />
+  <meta name="keywords" content="현수막 편집기,배너 편집기,현수막 만들기,온라인 편집,현수막 디자인 직접 제작" />
+  <link rel="canonical" href="https://jubora.kr/editor.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="주보라" />
+  <meta property="og:title"       content="현수막 온라인 편집기 | 주보라" />
+  <meta property="og:description" content="직접 디자인하고 주문까지. 주보라 온라인 편집기." />
+  <meta property="og:image"       content="https://jubora.kr/og-image.png" />
+  <meta property="og:url"         content="https://jubora.kr/editor.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon"            href="favicon.svg" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/editor.css" />
+</head>
+<body class="editor-page">
+
+  <!-- ===================== HEADER (공통 – 편집기 전용 간소화) ===================== -->
+  <header id="site-header" class="editor-header">
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><span>주</span></div>
+          <div>주보라<span class="logo-sub">현수막·배너 전문</span></div>
+        </a>
+
+        <!-- 편집기 전용 문서 제목 -->
+        <div class="editor-title-wrap">
+          <input type="text" class="editor-doc-title" value="새 현수막 디자인" aria-label="문서 제목" />
+        </div>
+
+        <!-- 편집기 전용 액션 -->
+        <div class="editor-header-actions">
+          <button class="btn btn-outline btn-sm" id="btn-undo" type="button" title="되돌리기 (Ctrl+Z)">↩ 되돌리기</button>
+          <button class="btn btn-outline btn-sm" id="btn-redo" type="button" title="다시실행 (Ctrl+Y)">↪ 다시실행</button>
+          <button class="btn btn-outline btn-sm" id="btn-preset-toggle" type="button">📋 템플릿 변경</button>
+          <button class="btn btn-primary btn-sm" id="btn-save" type="button">💾 저장</button>
+          <a href="order.html" class="btn btn-accent btn-sm">주문하기 →</a>
+        </div>
+
+        <button class="hamburger" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 편집기에서도 네비게이션은 유지 (모바일 메뉴용) -->
+    <nav id="site-nav" aria-label="주메뉴" style="display:none;">
+      <div class="container">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+          <li class="nav-item"><a href="templates.html" class="nav-link">디자인 템플릿</a></li>
+          <li class="nav-item"><a href="editor.html"    class="nav-link active">직접 제작</a></li>
+          <li class="nav-item"><a href="order.html"     class="nav-link">견적·주문</a></li>
+          <li class="nav-item"><a href="#"              class="nav-link">고객센터</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- /HEADER -->
+
+  <!-- ============ 템플릿 프리셋 바 (접기/펼치기) ============ -->
+  <div class="preset-bar" id="preset-bar" aria-hidden="true">
+    <div class="preset-bar-inner">
+
+      <button class="preset-card" data-preset="basic">
+        <div class="preset-thumb preset-thumb--basic">
+          <span class="pt-main">메인 문구</span>
+          <span class="pt-sub">서브 문구</span>
+        </div>
+        <div class="preset-info"><strong>📝 기본형</strong><small>중앙 정렬 · 메인+서브</small></div>
+      </button>
+
+      <button class="preset-card" data-preset="opening">
+        <div class="preset-thumb preset-thumb--opening">
+          <span class="pt-extra">🌸 오픈 기념 🌸</span>
+          <span class="pt-main">상호명</span>
+          <span class="pt-sub">날짜 · 주소</span>
+        </div>
+        <div class="preset-info"><strong>🎊 개업형</strong><small>꽃 테두리 · 축하 강조</small></div>
+      </button>
+
+      <button class="preset-card" data-preset="event">
+        <div class="preset-thumb preset-thumb--event">
+          <span class="pt-main">행사명</span>
+          <span class="pt-extra">📅 날짜</span>
+          <span class="pt-extra">📍 장소</span>
+        </div>
+        <div class="preset-info"><strong>🎪 행사형</strong><small>날짜·장소 크게</small></div>
+      </button>
+
+      <button class="preset-card" data-preset="election">
+        <div class="preset-thumb preset-thumb--election">
+          <span class="pt-extra">기호 O번</span>
+          <span class="pt-main">홍 길 동</span>
+          <span class="pt-sub">슬로건 입력</span>
+        </div>
+        <div class="preset-info"><strong>🗳 선거형</strong><small>이름 크게 · 슬로건</small></div>
+      </button>
+
+      <button class="preset-card" data-preset="simple">
+        <div class="preset-thumb preset-thumb--simple">
+          <span class="pt-main">메인 문구</span>
+          <span class="pt-sub">서브 문구</span>
+        </div>
+        <div class="preset-info"><strong>✨ 심플형</strong><small>깔끔한 텍스트 전용</small></div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ===================== EDITOR BODY ===================== -->
+  <main class="editor-body">
+
+    <!-- ── 좌측: 아이콘 탭 + 슬라이드 패널 ── -->
+    <aside class="editor-sidebar editor-sidebar-left">
+
+      <!-- 아이콘 탭 스트립 -->
+      <div class="editor-tool-tabs">
+        <button class="tool-tab active" data-tab="preset" title="프리셋">📋</button>
+        <button class="tool-tab"        data-tab="text"   title="텍스트">T</button>
+        <button class="tool-tab"        data-tab="image"  title="이미지">🖼</button>
+        <button class="tool-tab"        data-tab="bg"     title="배경색">🎨</button>
+        <button class="tool-tab"        data-tab="border" title="테두리">◻</button>
+      </div>
+
+      <!-- 패널 슬롯 (탭마다 내용 교체) -->
+      <div class="editor-tool-panel" id="tool-panel">
+
+        <!-- ── 프리셋 패널 ── -->
+        <div class="tp-pane active" id="pane-preset">
+          <p class="tp-title">레이아웃 프리셋</p>
+          <div class="tp-preset-list">
+            <button class="tp-preset-btn active" data-preset="basic">
+              <span class="tp-preset-icon">📝</span>
+              <span>기본형</span>
+            </button>
+            <button class="tp-preset-btn" data-preset="opening">
+              <span class="tp-preset-icon">🎊</span>
+              <span>개업형</span>
+            </button>
+            <button class="tp-preset-btn" data-preset="event">
+              <span class="tp-preset-icon">🎪</span>
+              <span>행사형</span>
+            </button>
+            <button class="tp-preset-btn" data-preset="election">
+              <span class="tp-preset-icon">🗳</span>
+              <span>선거형</span>
+            </button>
+            <button class="tp-preset-btn" data-preset="simple">
+              <span class="tp-preset-icon">✨</span>
+              <span>심플형</span>
+            </button>
+          </div>
+          <div class="tp-divider"></div>
+          <p class="tp-title">캔버스 크기</p>
+          <div class="tp-size-list">
+            <button class="tp-size-btn active" data-size="banner-3x1">현수막 3×1</button>
+            <button class="tp-size-btn" data-size="banner-2x1">현수막 2×1</button>
+            <button class="tp-size-btn" data-size="xbanner">X-배너</button>
+            <button class="tp-size-btn" data-size="rollup">롤업배너</button>
+          </div>
+        </div>
+
+        <!-- ── 텍스트 패널 ── -->
+        <div class="tp-pane" id="pane-text">
+          <p class="tp-title">텍스트 편집</p>
+
+          <div class="tp-field">
+            <label>메인 문구</label>
+            <textarea id="txt-main" rows="2" placeholder="메인 문구를 입력하세요"></textarea>
+          </div>
+          <div class="tp-field">
+            <label>서브 문구</label>
+            <textarea id="txt-sub" rows="2" placeholder="서브 문구를 입력하세요"></textarea>
+          </div>
+          <div class="tp-field">
+            <label id="extra1-label">추가 문구 1</label>
+            <textarea id="txt-extra1" rows="2" placeholder="날짜 / 기호번호 등"></textarea>
+          </div>
+          <div class="tp-field">
+            <label id="extra2-label">추가 문구 2</label>
+            <textarea id="txt-extra2" rows="2" placeholder="장소 / 슬로건 등"></textarea>
+          </div>
+
+          <div class="tp-divider"></div>
+          <p class="tp-title">텍스트 색상</p>
+          <div class="tp-color-row">
+            <input type="color" id="color-text" value="#ffffff" title="텍스트 색상" />
+            <span>텍스트</span>
+            <input type="color" id="color-accent" value="#ffe066" title="강조 색상" />
+            <span>강조</span>
+          </div>
+        </div>
+
+        <!-- ── 이미지/로고 패널 ── -->
+        <div class="tp-pane" id="pane-image">
+          <p class="tp-title">로고 / 이미지 업로드</p>
+          <div class="tp-upload-area" id="logo-upload-area">
+            <input type="file" id="logo-file-input" accept="image/*" hidden />
+            <div class="tp-upload-placeholder" id="logo-placeholder">
+              <span>🖼</span>
+              <p>클릭하거나<br>파일을 드래그하세요</p>
+              <small>PNG · JPG · SVG 지원</small>
+            </div>
+            <div class="tp-upload-preview" id="logo-preview" style="display:none;">
+              <img id="logo-preview-img" alt="로고 미리보기" />
+              <button class="tp-upload-remove" id="logo-remove" title="삭제">✕</button>
+            </div>
+          </div>
+
+          <div class="tp-divider"></div>
+          <p class="tp-title">로고 위치</p>
+          <div class="tp-pos-grid" id="logo-pos-grid">
+            <button class="tp-pos-btn active" data-pos="none" title="없음">✕</button>
+            <button class="tp-pos-btn" data-pos="top-left"  title="좌상단">↖</button>
+            <button class="tp-pos-btn" data-pos="top-right" title="우상단">↗</button>
+            <button class="tp-pos-btn" data-pos="center"    title="중앙">⊙</button>
+            <button class="tp-pos-btn" data-pos="bottom"    title="하단">↓</button>
+          </div>
+
+          <div class="tp-divider"></div>
+          <p class="tp-title">로고 크기</p>
+          <div class="tp-field">
+            <input type="range" id="logo-size" min="10" max="50" value="20" />
+            <span id="logo-size-val">20%</span>
+          </div>
+        </div>
+
+        <!-- ── 배경색 패널 ── -->
+        <div class="tp-pane" id="pane-bg">
+          <p class="tp-title">배경 색상</p>
+          <div class="tp-swatch-grid" id="bg-swatches">
+            <button class="tp-swatch" data-color="#0367A6" style="background:#0367A6" title="파란색"></button>
+            <button class="tp-swatch" data-color="#1e3a8a" style="background:#1e3a8a" title="진파란"></button>
+            <button class="tp-swatch" data-color="#7B0000" style="background:#7B0000" title="진빨강"></button>
+            <button class="tp-swatch" data-color="#F22233" style="background:#F22233" title="빨강"></button>
+            <button class="tp-swatch" data-color="#15803d" style="background:#15803d" title="초록"></button>
+            <button class="tp-swatch" data-color="#0e7490" style="background:#0e7490" title="청록"></button>
+            <button class="tp-swatch" data-color="#7c3aed" style="background:#7c3aed" title="보라"></button>
+            <button class="tp-swatch" data-color="#d97706" style="background:#d97706" title="주황"></button>
+            <button class="tp-swatch" data-color="#1a2332" style="background:#1a2332" title="진네이비"></button>
+            <button class="tp-swatch" data-color="#111827" style="background:#111827" title="거의검정"></button>
+            <button class="tp-swatch" data-color="#ffffff" style="background:#fff;border:1px solid #ddd;" title="흰색"></button>
+            <button class="tp-swatch" data-color="#f8fafc" style="background:#f8fafc;border:1px solid #ddd;" title="밝은회색"></button>
+          </div>
+          <div class="tp-field" style="margin-top:12px;">
+            <label>직접 입력</label>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <input type="color" id="color-bg" value="#0367A6" />
+              <input type="text" id="color-bg-hex" class="tp-hex-input" value="#0367A6" placeholder="#000000" maxlength="7" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 테두리 패널 ── -->
+        <div class="tp-pane" id="pane-border">
+          <p class="tp-title">테두리 스타일</p>
+          <div class="tp-border-options" id="border-style-opts">
+            <button class="tp-border-opt active" data-border="none">
+              <div class="tbo-preview tbo-none"></div>
+              <span>없음</span>
+            </button>
+            <button class="tp-border-opt" data-border="solid">
+              <div class="tbo-preview tbo-solid"></div>
+              <span>실선</span>
+            </button>
+            <button class="tp-border-opt" data-border="double">
+              <div class="tbo-preview tbo-double"></div>
+              <span>이중선</span>
+            </button>
+            <button class="tp-border-opt" data-border="deco">
+              <div class="tbo-preview tbo-deco"></div>
+              <span>장식</span>
+            </button>
+          </div>
+
+          <div class="tp-divider"></div>
+          <p class="tp-title">테두리 색상</p>
+          <div class="tp-swatch-grid" id="border-swatches">
+            <button class="tp-swatch" data-color="#ffffff" style="background:#fff;border:1px solid #ddd;"></button>
+            <button class="tp-swatch" data-color="#FFD700" style="background:#FFD700;"></button>
+            <button class="tp-swatch" data-color="#F22233" style="background:#F22233;"></button>
+            <button class="tp-swatch" data-color="#0367A6" style="background:#0367A6;"></button>
+            <button class="tp-swatch" data-color="#111827" style="background:#111827;"></button>
+            <button class="tp-swatch" data-color="#15803d" style="background:#15803d;"></button>
+          </div>
+          <div class="tp-field" style="margin-top:8px;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <input type="color" id="color-border" value="#ffffff" />
+              <label>테두리 두께</label>
+              <input type="range" id="border-width" min="2" max="20" value="6" style="flex:1;" />
+              <span id="border-width-val">6px</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /tool-panel -->
+
+    </aside>
+
+    <!-- ── 캔버스 중앙 영역 ── -->
+    <div class="editor-canvas-area">
+
+      <!-- 캔버스 툴바 -->
+      <div class="editor-canvas-toolbar">
+        <div class="ect-left">
+          <span class="ect-label">미리보기</span>
+          <span class="ect-size-badge" id="canvas-size-badge">현수막 3×1</span>
+        </div>
+        <div class="ect-center">
+          <button class="ect-zoom-btn" id="zoom-out" title="축소">－</button>
+          <span class="ect-zoom-val" id="zoom-val">75%</span>
+          <button class="ect-zoom-btn" id="zoom-in" title="확대">＋</button>
+          <button class="ect-zoom-btn" id="zoom-fit" title="화면 맞춤">⊡</button>
+        </div>
+        <div class="ect-right">
+          <span class="autosave-status" id="autosave-status">✓ 자동 저장됨</span>
+        </div>
+      </div>
+
+      <!-- 캔버스 렌더 영역 -->
+      <div class="editor-canvas-wrap" id="canvas-wrap">
+        <div class="canvas-scale-wrapper" id="canvas-scale-wrapper">
+
+          <!-- ★ 실제 디자인 캔버스 (DOM 기반) ★ -->
+          <div class="design-canvas" id="design-canvas" data-preset="basic" data-border="none">
+
+            <!-- 테두리 레이어 -->
+            <div class="dc-border-layer" id="dc-border-layer"></div>
+
+            <!-- 코너 장식 (테두리=deco 일 때 표시) -->
+            <div class="dc-corner dc-corner-tl">❋</div>
+            <div class="dc-corner dc-corner-tr">❋</div>
+            <div class="dc-corner dc-corner-bl">❋</div>
+            <div class="dc-corner dc-corner-br">❋</div>
+
+            <!-- 로고 오버레이 -->
+            <div class="dc-logo-wrap" id="dc-logo-wrap" data-pos="none">
+              <img id="dc-logo-img" src="" alt="로고" draggable="false" />
+            </div>
+
+            <!-- 텍스트 콘텐츠 -->
+            <div class="dc-content" id="dc-content">
+              <div class="dc-extra1" id="dc-extra1"
+                   contenteditable="true" spellcheck="false"
+                   data-placeholder="추가 문구 1"></div>
+              <div class="dc-main"   id="dc-main"
+                   contenteditable="true" spellcheck="false"
+                   data-placeholder="메인 문구를 입력하세요">메인 문구를 입력하세요</div>
+              <div class="dc-sub"    id="dc-sub"
+                   contenteditable="true" spellcheck="false"
+                   data-placeholder="서브 문구를 입력하세요">서브 문구를 입력하세요</div>
+              <div class="dc-extra2" id="dc-extra2"
+                   contenteditable="true" spellcheck="false"
+                   data-placeholder="추가 문구 2"></div>
+            </div>
+
+          </div>
+          <!-- /design-canvas -->
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /canvas-area -->
+
+    <!-- ── 우측 속성 패널 ── -->
+    <aside class="editor-sidebar editor-sidebar-right">
+
+      <div class="editor-prop-header">
+        <h3>속성</h3>
+      </div>
+
+      <!-- 캔버스 설정 -->
+      <div class="editor-prop-section">
+        <h4>캔버스</h4>
+        <div class="prop-row">
+          <label>제품 크기</label>
+          <select id="prop-size" class="form-control">
+            <option value="banner-3x1">현수막 3×1m</option>
+            <option value="banner-2x1">현수막 2×1m</option>
+            <option value="xbanner">X-배너 60×180cm</option>
+            <option value="rollup">롤업 60×160cm</option>
+          </select>
+        </div>
+        <div class="prop-row">
+          <label>배경색</label>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input type="color" id="prop-bg-color" value="#0367A6" />
+            <span id="prop-bg-hex" style="font-size:.8rem;color:var(--text-sub);">#0367A6</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 텍스트 스타일 -->
+      <div class="editor-prop-section">
+        <h4>텍스트 스타일</h4>
+        <div class="prop-row">
+          <label>메인 크기</label>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input type="range" id="prop-main-size" min="20" max="120" value="52" style="flex:1;" />
+            <span id="prop-main-size-val" style="font-size:.8rem;min-width:32px;">52px</span>
+          </div>
+        </div>
+        <div class="prop-row">
+          <label>서브 크기</label>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input type="range" id="prop-sub-size" min="12" max="60" value="24" style="flex:1;" />
+            <span id="prop-sub-size-val" style="font-size:.8rem;min-width:32px;">24px</span>
+          </div>
+        </div>
+        <div class="prop-row">
+          <label>텍스트 정렬</label>
+          <div class="prop-align-btns">
+            <button class="prop-align-btn active" data-align="center" title="가운데">≡</button>
+            <button class="prop-align-btn" data-align="left"   title="왼쪽">⬤⬤⬤</button>
+            <button class="prop-align-btn" data-align="right"  title="오른쪽">⬤⬤⬤</button>
+          </div>
+        </div>
+        <div class="prop-row">
+          <label>굵기</label>
+          <div style="display:flex;gap:6px;">
+            <button class="prop-fmt-btn active" id="btn-bold" title="굵게"><strong>B</strong></button>
+            <button class="prop-fmt-btn" id="btn-italic" title="기울임"><em>I</em></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 내보내기 -->
+      <div class="editor-prop-section">
+        <h4>내보내기</h4>
+        <button class="btn btn-outline btn-sm" id="btn-screenshot" style="width:100%;margin-bottom:8px;">🖼 PNG 다운로드</button>
+        <a href="order.html" class="btn btn-accent btn-sm" style="width:100%;display:flex;justify-content:center;">📦 주문하기 →</a>
+      </div>
+
+      <!-- 저장 상태 -->
+      <div class="editor-prop-section">
+        <h4>자동 저장</h4>
+        <p style="font-size:.82rem;color:var(--text-sub);line-height:1.6;">
+          편집 내용은 자동으로 저장됩니다.<br>
+          브라우저를 닫았다 열어도 유지됩니다.
+        </p>
+        <button class="btn btn-outline btn-sm" id="btn-clear-storage" style="width:100%;margin-top:8px;font-size:.8rem;">🗑 저장 내용 초기화</button>
+      </div>
+
+    </aside>
+
+  </main>
+  <!-- /EDITOR BODY -->
+
+  <!-- ===================== FOOTER (편집기 전용 – 간소화) ===================== -->
+  <footer class="editor-footer">
+    <div class="container">
+      <span>© 2026 주보라</span>
+      <nav class="editor-footer-nav">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보 처리방침</a>
+        <a href="#">고객센터</a>
+      </nav>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <script src="js/cloudinary-config.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+  /* ================================================================
+     주보라 편집기 – 완전 구현
+     기능: 프리셋, 테두리, 로고 업로드, localStorage 자동 저장
+  ================================================================ */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    /* ──────────────────────────────────────────
+       1. 프리셋 정의
+    ────────────────────────────────────────── */
+    const PRESETS = {
+      basic: {
+        name: '기본형',
+        bgColor: '#0367A6', textColor: '#ffffff', accentColor: '#ffe066',
+        borderStyle: 'none', borderColor: '#ffffff', borderWidth: 6,
+        mainText: '주보라 현수막 제작', subText: '빠른 제작 · 합리적 가격 · 전국 배송',
+        extra1: '', extra2: '', align: 'center', mainSize: 52, subSize: 24, bold: true,
+        extra1Label: '추가 문구 1', extra2Label: '추가 문구 2',
+      },
+      opening: {
+        name: '개업형',
+        bgColor: '#7B0000', textColor: '#FFD700', accentColor: '#ffffff',
+        borderStyle: 'deco', borderColor: '#FFD700', borderWidth: 6,
+        mainText: '상호명을 입력하세요', subText: '드디어 오픈합니다!',
+        extra1: '🌸 개업을 진심으로 축하드립니다 🌸', extra2: '날짜 · 주소를 입력하세요',
+        align: 'center', mainSize: 58, subSize: 28, bold: true,
+        extra1Label: '오픈 인사말', extra2Label: '날짜 · 주소',
+      },
+      event: {
+        name: '행사형',
+        bgColor: '#15803d', textColor: '#ffffff', accentColor: '#bbf7d0',
+        borderStyle: 'solid', borderColor: 'rgba(255,255,255,0.5)', borderWidth: 8,
+        mainText: '행사명을 입력하세요', subText: '',
+        extra1: '📅 날짜: 2025년 O월 O일(O요일) OO:OO', extra2: '📍 장소: 장소를 입력하세요',
+        align: 'center', mainSize: 60, subSize: 22, bold: true,
+        extra1Label: '날짜', extra2Label: '장소',
+      },
+      election: {
+        name: '선거형',
+        bgColor: '#1e3a8a', textColor: '#ffffff', accentColor: '#F22233',
+        borderStyle: 'double', borderColor: '#ffffff', borderWidth: 5,
+        mainText: '홍 길 동', subText: '슬로건을 입력하세요',
+        extra1: '기호 O번', extra2: '',
+        align: 'center', mainSize: 80, subSize: 26, bold: true,
+        extra1Label: '기호 번호', extra2Label: '부제 / 구호',
+      },
+      simple: {
+        name: '심플형',
+        bgColor: '#ffffff', textColor: '#111827', accentColor: '#0367A6',
+        borderStyle: 'none', borderColor: '#111827', borderWidth: 4,
+        mainText: '메인 문구를 입력하세요', subText: '서브 문구를 입력하세요',
+        extra1: '', extra2: '', align: 'center', mainSize: 48, subSize: 22, bold: false,
+        extra1Label: '추가 문구 1', extra2Label: '추가 문구 2',
+      },
+    };
+
+    const CANVAS_SIZES = {
+      'banner-3x1': { label: '현수막 3×1m', ratio: 3 / 1 },
+      'banner-2x1': { label: '현수막 2×1m', ratio: 2 / 1 },
+      'xbanner':    { label: 'X-배너 60×180cm', ratio: 60 / 180 },
+      'rollup':     { label: '롤업배너 60×160cm', ratio: 60 / 160 },
+    };
+
+    const STORAGE_KEY = 'jubora_editor_v2';
+
+    /* ──────────────────────────────────────────
+       2. 상태 (state)
+    ────────────────────────────────────────── */
+    let state = {
+      title:        '새 현수막 디자인',
+      preset:       'basic',
+      canvasSize:   'banner-3x1',
+      bgColor:      '#0367A6',
+      textColor:    '#ffffff',
+      accentColor:  '#ffe066',
+      borderStyle:  'none',
+      borderColor:  '#ffffff',
+      borderWidth:  6,
+      mainText:     '주보라 현수막 제작',
+      subText:      '빠른 제작 · 합리적 가격 · 전국 배송',
+      extra1:       '',
+      extra2:       '',
+      align:        'center',
+      mainSize:     52,
+      subSize:      24,
+      bold:         true,
+      italic:       false,
+      logoPos:      'none',
+      logoDataUrl:  null,
+      logoSize:     20,
+      zoom:         75,
+    };
+
+    /* 히스토리 (undo/redo) */
+    let history = [], histIdx = -1;
+    function pushHistory() {
+      history = history.slice(0, histIdx + 1);
+      history.push(JSON.stringify(state));
+      histIdx = history.length - 1;
+      if (history.length > 50) { history.shift(); histIdx--; }
+    }
+    function undo() {
+      if (histIdx <= 0) return;
+      histIdx--;
+      state = JSON.parse(history[histIdx]);
+      syncAllToCanvas();
+      syncUIFromState();
+    }
+    function redo() {
+      if (histIdx >= history.length - 1) return;
+      histIdx++;
+      state = JSON.parse(history[histIdx]);
+      syncAllToCanvas();
+      syncUIFromState();
+    }
+
+    /* ──────────────────────────────────────────
+       3. DOM refs
+    ────────────────────────────────────────── */
+    const canvas       = document.getElementById('design-canvas');
+    const dcMain       = document.getElementById('dc-main');
+    const dcSub        = document.getElementById('dc-sub');
+    const dcExtra1     = document.getElementById('dc-extra1');
+    const dcExtra2     = document.getElementById('dc-extra2');
+    const dcLogoWrap   = document.getElementById('dc-logo-wrap');
+    const dcLogoImg    = document.getElementById('dc-logo-img');
+    const scaleWrapper = document.getElementById('canvas-scale-wrapper');
+    const titleInput   = document.querySelector('.editor-doc-title');
+    const autosaveEl   = document.getElementById('autosave-status');
+
+    /* ──────────────────────────────────────────
+       4. 캔버스에 state 반영
+    ────────────────────────────────────────── */
+    function syncAllToCanvas() {
+      /* 배경색 */
+      canvas.style.background = state.bgColor;
+
+      /* 텍스트 색상 CSS 변수 */
+      canvas.style.setProperty('--dc-text',   state.textColor);
+      canvas.style.setProperty('--dc-accent', state.accentColor);
+
+      /* preset data attribute (레이아웃 클래스) */
+      canvas.dataset.preset = state.preset;
+
+      /* 텍스트 내용 */
+      if (document.activeElement !== dcMain)   dcMain.textContent   = state.mainText;
+      if (document.activeElement !== dcSub)    dcSub.textContent    = state.subText;
+      if (document.activeElement !== dcExtra1) dcExtra1.textContent = state.extra1;
+      if (document.activeElement !== dcExtra2) dcExtra2.textContent = state.extra2;
+
+      /* 텍스트 스타일 */
+      dcMain.style.fontSize   = state.mainSize + 'px';
+      dcSub.style.fontSize    = state.subSize  + 'px';
+      dcMain.style.fontWeight = state.bold ? '900' : '400';
+      dcSub.style.fontWeight  = state.bold ? '700' : '400';
+      dcMain.style.fontStyle  = state.italic ? 'italic' : 'normal';
+      dcSub.style.fontStyle   = state.italic ? 'italic' : 'normal';
+      dcMain.style.color      = state.textColor;
+      dcSub.style.color       = state.textColor;
+      dcExtra1.style.color    = state.accentColor;
+      dcExtra2.style.color    = state.accentColor;
+      canvas.style.textAlign  = state.align;
+      const dcContent = document.getElementById('dc-content');
+      dcContent.style.alignItems = state.align === 'center' ? 'center'
+        : state.align === 'left' ? 'flex-start' : 'flex-end';
+
+      /* 테두리 */
+      applyBorderToCanvas();
+
+      /* 로고 */
+      applyLogoToCanvas();
+
+      /* 캔버스 비율 */
+      applyCanvasSize();
+
+      /* 줌 */
+      applyZoom();
+    }
+
+    function applyBorderToCanvas() {
+      const c  = state.borderColor;
+      const w  = state.borderWidth;
+      canvas.dataset.border = state.borderStyle;
+      canvas.style.removeProperty('--dc-border-color');
+      canvas.style.removeProperty('--dc-border-width');
+      canvas.style.setProperty('--dc-border-color', c);
+      canvas.style.setProperty('--dc-border-width', w + 'px');
+    }
+
+    function applyLogoToCanvas() {
+      if (!state.logoDataUrl || state.logoPos === 'none') {
+        dcLogoWrap.dataset.pos = 'none';
+        dcLogoImg.src = '';
+        return;
+      }
+      dcLogoWrap.dataset.pos = state.logoPos;
+      dcLogoImg.src = state.logoDataUrl;
+      dcLogoImg.style.width = state.logoSize + '%';
+    }
+
+    function applyCanvasSize() {
+      const sizeInfo = CANVAS_SIZES[state.canvasSize];
+      if (!sizeInfo) return;
+      const ratio = sizeInfo.ratio;
+      /* 가로형: width 고정, height = width / ratio */
+      /* 세로형: height 고정, width = height * ratio */
+      if (ratio >= 1) {
+        canvas.style.width  = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.aspectRatio = ratio;
+      } else {
+        canvas.style.height = '100%';
+        canvas.style.width  = 'auto';
+        canvas.style.aspectRatio = ratio;
+      }
+      document.getElementById('canvas-size-badge').textContent = sizeInfo.label;
+      document.getElementById('prop-size').value = state.canvasSize;
+    }
+
+    function applyZoom() {
+      const z = state.zoom / 100;
+      scaleWrapper.style.transform = `scale(${z})`;
+      scaleWrapper.style.transformOrigin = 'top center';
+      document.getElementById('zoom-val').textContent = state.zoom + '%';
+    }
+
+    /* ──────────────────────────────────────────
+       5. UI → state 동기화
+    ────────────────────────────────────────── */
+    function syncUIFromState() {
+      /* 제목 */
+      titleInput.value = state.title;
+
+      /* 텍스트 패널 */
+      document.getElementById('txt-main').value   = state.mainText;
+      document.getElementById('txt-sub').value    = state.subText;
+      document.getElementById('txt-extra1').value = state.extra1;
+      document.getElementById('txt-extra2').value = state.extra2;
+
+      /* 색상 */
+      document.getElementById('color-text').value   = state.textColor;
+      document.getElementById('color-accent').value = state.accentColor;
+      document.getElementById('color-bg').value     = state.bgColor;
+      document.getElementById('color-bg-hex').value = state.bgColor;
+      document.getElementById('prop-bg-color').value = state.bgColor;
+      document.getElementById('prop-bg-hex').textContent = state.bgColor;
+      document.getElementById('color-border').value = state.borderColor;
+
+      /* 폰트 크기 슬라이더 */
+      document.getElementById('prop-main-size').value = state.mainSize;
+      document.getElementById('prop-main-size-val').textContent = state.mainSize + 'px';
+      document.getElementById('prop-sub-size').value = state.subSize;
+      document.getElementById('prop-sub-size-val').textContent = state.subSize + 'px';
+
+      /* 테두리 너비 */
+      document.getElementById('border-width').value = state.borderWidth;
+      document.getElementById('border-width-val').textContent = state.borderWidth + 'px';
+
+      /* 로고 크기 */
+      document.getElementById('logo-size').value = state.logoSize;
+      document.getElementById('logo-size-val').textContent = state.logoSize + '%';
+
+      /* 프리셋 버튼 active */
+      document.querySelectorAll('.tp-preset-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === state.preset));
+      document.querySelectorAll('.preset-card').forEach(b => b.classList.toggle('active', b.dataset.preset === state.preset));
+
+      /* 크기 버튼 active */
+      document.querySelectorAll('.tp-size-btn').forEach(b => b.classList.toggle('active', b.dataset.size === state.canvasSize));
+
+      /* 테두리 스타일 active */
+      document.querySelectorAll('.tp-border-opt').forEach(b => b.classList.toggle('active', b.dataset.border === state.borderStyle));
+
+      /* 텍스트 정렬 active */
+      document.querySelectorAll('.prop-align-btn').forEach(b => b.classList.toggle('active', b.dataset.align === state.align));
+
+      /* Bold/Italic */
+      document.getElementById('btn-bold').classList.toggle('active', state.bold);
+      document.getElementById('btn-italic').classList.toggle('active', state.italic);
+
+      /* 로고 위치 active */
+      document.querySelectorAll('.tp-pos-btn').forEach(b => b.classList.toggle('active', b.dataset.pos === state.logoPos));
+
+      /* 로고 미리보기 */
+      if (state.logoDataUrl) {
+        document.getElementById('logo-placeholder').style.display = 'none';
+        document.getElementById('logo-preview').style.display = 'flex';
+        document.getElementById('logo-preview-img').src = state.logoDataUrl;
+      } else {
+        document.getElementById('logo-placeholder').style.display = 'flex';
+        document.getElementById('logo-preview').style.display = 'none';
+      }
+
+      /* Extra 라벨 */
+      const preset = PRESETS[state.preset];
+      if (preset) {
+        document.getElementById('extra1-label').textContent = preset.extra1Label;
+        document.getElementById('extra2-label').textContent = preset.extra2Label;
+      }
+    }
+
+    /* ──────────────────────────────────────────
+       6. 프리셋 적용
+    ────────────────────────────────────────── */
+    function applyPreset(key) {
+      const p = PRESETS[key];
+      if (!p) return;
+      Object.assign(state, {
+        preset: key,
+        bgColor: p.bgColor, textColor: p.textColor, accentColor: p.accentColor,
+        borderStyle: p.borderStyle, borderColor: p.borderColor, borderWidth: p.borderWidth,
+        mainText: p.mainText, subText: p.subText, extra1: p.extra1, extra2: p.extra2,
+        align: p.align, mainSize: p.mainSize, subSize: p.subSize, bold: p.bold,
+      });
+      pushHistory();
+      syncAllToCanvas();
+      syncUIFromState();
+      scheduleAutosave();
+
+      /* 프리셋 바 닫기 */
+      document.getElementById('preset-bar').classList.remove('open');
+    }
+
+    /* ──────────────────────────────────────────
+       7. LocalStorage 저장/복원
+    ────────────────────────────────────────── */
+    let autosaveTimer = null;
+
+    function scheduleAutosave() {
+      clearTimeout(autosaveTimer);
+      autosaveEl.textContent = '...저장 중';
+      autosaveTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          autosaveEl.textContent = '✓ 자동 저장됨';
+        } catch (e) {
+          autosaveEl.textContent = '⚠ 저장 실패';
+        }
+      }, 800);
+    }
+
+    function loadFromStorage() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          Object.assign(state, parsed);
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
+    /* ──────────────────────────────────────────
+       8. 이벤트 바인딩
+    ────────────────────────────────────────── */
+
+    /* — 탭 전환 — */
+    document.querySelectorAll('.tool-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tp-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('pane-' + btn.dataset.tab)?.classList.add('active');
+      });
+    });
+
+    /* — 프리셋 바 토글 (헤더 버튼) — */
+    document.getElementById('btn-preset-toggle').addEventListener('click', () => {
+      document.getElementById('preset-bar').classList.toggle('open');
+    });
+
+    /* — 프리셋 카드 (preset-bar) — */
+    document.querySelectorAll('.preset-card').forEach(btn => {
+      btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+    });
+
+    /* — 프리셋 버튼 (좌측 패널) — */
+    document.querySelectorAll('.tp-preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+    });
+
+    /* — 캔버스 크기 — */
+    function setCanvasSize(sizeKey) {
+      state.canvasSize = sizeKey;
+      applyCanvasSize();
+      scheduleAutosave();
+    }
+    document.querySelectorAll('.tp-size-btn').forEach(btn =>
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tp-size-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        setCanvasSize(btn.dataset.size);
+      })
+    );
+    document.getElementById('prop-size').addEventListener('change', e => setCanvasSize(e.target.value));
+
+    /* — 텍스트 입력 (패널 → 캔버스) — */
+    function bindTextInput(inputId, field, canvasEl) {
+      const el = document.getElementById(inputId);
+      el.addEventListener('input', () => {
+        state[field] = el.value;
+        canvasEl.textContent = el.value;
+        scheduleAutosave();
+      });
+    }
+    bindTextInput('txt-main',   'mainText', dcMain);
+    bindTextInput('txt-sub',    'subText',  dcSub);
+    bindTextInput('txt-extra1', 'extra1',   dcExtra1);
+    bindTextInput('txt-extra2', 'extra2',   dcExtra2);
+
+    /* — contenteditable → state 동기화 — */
+    [dcMain, dcSub, dcExtra1, dcExtra2].forEach(el => {
+      const field = el.id === 'dc-main' ? 'mainText'
+        : el.id === 'dc-sub' ? 'subText'
+        : el.id === 'dc-extra1' ? 'extra1' : 'extra2';
+      el.addEventListener('input', () => {
+        state[field] = el.textContent;
+        const txtEl = document.getElementById(
+          el.id === 'dc-main' ? 'txt-main' : el.id === 'dc-sub' ? 'txt-sub'
+            : el.id === 'dc-extra1' ? 'txt-extra1' : 'txt-extra2'
+        );
+        if (txtEl && document.activeElement !== txtEl) txtEl.value = el.textContent;
+        scheduleAutosave();
+      });
+      el.addEventListener('blur', pushHistory);
+    });
+
+    /* — 텍스트 색상 — */
+    document.getElementById('color-text').addEventListener('input', e => {
+      state.textColor = e.target.value;
+      syncAllToCanvas(); scheduleAutosave();
+    });
+    document.getElementById('color-accent').addEventListener('input', e => {
+      state.accentColor = e.target.value;
+      syncAllToCanvas(); scheduleAutosave();
+    });
+
+    /* — 배경색 — */
+    function setBgColor(hex) {
+      state.bgColor = hex;
+      canvas.style.background = hex;
+      document.getElementById('color-bg').value = hex;
+      document.getElementById('color-bg-hex').value = hex;
+      document.getElementById('prop-bg-color').value = hex;
+      document.getElementById('prop-bg-hex').textContent = hex;
+      scheduleAutosave();
+    }
+    document.getElementById('color-bg').addEventListener('input', e => setBgColor(e.target.value));
+    document.getElementById('prop-bg-color').addEventListener('input', e => setBgColor(e.target.value));
+    document.getElementById('color-bg-hex').addEventListener('change', e => {
+      const v = e.target.value.trim();
+      if (/^#[0-9A-Fa-f]{6}$/.test(v)) setBgColor(v);
+    });
+    document.querySelectorAll('#bg-swatches .tp-swatch').forEach(btn =>
+      btn.addEventListener('click', () => setBgColor(btn.dataset.color))
+    );
+
+    /* — 테두리 스타일 — */
+    document.querySelectorAll('#border-style-opts .tp-border-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#border-style-opts .tp-border-opt').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.borderStyle = btn.dataset.border;
+        applyBorderToCanvas();
+        pushHistory(); scheduleAutosave();
+      });
+    });
+    document.getElementById('color-border').addEventListener('input', e => {
+      state.borderColor = e.target.value;
+      applyBorderToCanvas(); scheduleAutosave();
+    });
+    document.querySelectorAll('#border-swatches .tp-swatch').forEach(btn =>
+      btn.addEventListener('click', () => {
+        state.borderColor = btn.dataset.color;
+        document.getElementById('color-border').value = btn.dataset.color;
+        applyBorderToCanvas(); scheduleAutosave();
+      })
+    );
+    document.getElementById('border-width').addEventListener('input', e => {
+      state.borderWidth = parseInt(e.target.value);
+      document.getElementById('border-width-val').textContent = e.target.value + 'px';
+      applyBorderToCanvas(); scheduleAutosave();
+    });
+
+    /* — 폰트 크기 슬라이더 — */
+    document.getElementById('prop-main-size').addEventListener('input', e => {
+      state.mainSize = parseInt(e.target.value);
+      document.getElementById('prop-main-size-val').textContent = e.target.value + 'px';
+      dcMain.style.fontSize = e.target.value + 'px';
+      scheduleAutosave();
+    });
+    document.getElementById('prop-sub-size').addEventListener('input', e => {
+      state.subSize = parseInt(e.target.value);
+      document.getElementById('prop-sub-size-val').textContent = e.target.value + 'px';
+      dcSub.style.fontSize = e.target.value + 'px';
+      scheduleAutosave();
+    });
+
+    /* — 텍스트 정렬 — */
+    document.querySelectorAll('.prop-align-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.prop-align-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.align = btn.dataset.align;
+        const dcContent = document.getElementById('dc-content');
+        canvas.style.textAlign = state.align;
+        dcContent.style.alignItems = state.align === 'center' ? 'center'
+          : state.align === 'left' ? 'flex-start' : 'flex-end';
+        scheduleAutosave();
+      });
+    });
+
+    /* — Bold / Italic — */
+    document.getElementById('btn-bold').addEventListener('click', () => {
+      state.bold = !state.bold;
+      document.getElementById('btn-bold').classList.toggle('active', state.bold);
+      dcMain.style.fontWeight = state.bold ? '900' : '400';
+      dcSub.style.fontWeight  = state.bold ? '700' : '400';
+      scheduleAutosave();
+    });
+    document.getElementById('btn-italic').addEventListener('click', () => {
+      state.italic = !state.italic;
+      document.getElementById('btn-italic').classList.toggle('active', state.italic);
+      dcMain.style.fontStyle = state.italic ? 'italic' : 'normal';
+      dcSub.style.fontStyle  = state.italic ? 'italic' : 'normal';
+      scheduleAutosave();
+    });
+
+    /* — 로고 업로드 — */
+    const logoInput    = document.getElementById('logo-file-input');
+    const logoDropArea = document.getElementById('logo-upload-area');
+
+    logoDropArea.addEventListener('click', () => logoInput.click());
+    logoInput.addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      readLogoFile(file);
+    });
+    logoDropArea.addEventListener('dragover', e => { e.preventDefault(); logoDropArea.classList.add('drag-over'); });
+    logoDropArea.addEventListener('dragleave', () => logoDropArea.classList.remove('drag-over'));
+    logoDropArea.addEventListener('drop', e => {
+      e.preventDefault();
+      logoDropArea.classList.remove('drag-over');
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) readLogoFile(file);
+    });
+
+    function readLogoFile(file) {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        state.logoDataUrl = ev.target.result;
+        if (state.logoPos === 'none') state.logoPos = 'top-left';
+        applyLogoToCanvas();
+        syncUIFromState();
+        scheduleAutosave();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.getElementById('logo-remove').addEventListener('click', e => {
+      e.stopPropagation();
+      state.logoDataUrl = null;
+      state.logoPos = 'none';
+      logoInput.value = '';
+      applyLogoToCanvas();
+      syncUIFromState();
+      scheduleAutosave();
+    });
+
+    /* — 로고 위치 — */
+    document.querySelectorAll('.tp-pos-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tp-pos-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.logoPos = btn.dataset.pos;
+        applyLogoToCanvas();
+        scheduleAutosave();
+      });
+    });
+
+    /* — 로고 크기 슬라이더 — */
+    document.getElementById('logo-size').addEventListener('input', e => {
+      state.logoSize = parseInt(e.target.value);
+      document.getElementById('logo-size-val').textContent = e.target.value + '%';
+      dcLogoImg.style.width = e.target.value + '%';
+      scheduleAutosave();
+    });
+
+    /* — 줌 — */
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      state.zoom = Math.min(state.zoom + 10, 150);
+      applyZoom();
+    });
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      state.zoom = Math.max(state.zoom - 10, 30);
+      applyZoom();
+    });
+    document.getElementById('zoom-fit').addEventListener('click', () => {
+      state.zoom = 75;
+      applyZoom();
+    });
+
+    /* — 되돌리기 / 다시실행 — */
+    document.getElementById('btn-undo').addEventListener('click', undo);
+    document.getElementById('btn-redo').addEventListener('click', redo);
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) { e.preventDefault(); undo(); }
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) { e.preventDefault(); redo(); }
+    });
+
+    /* — 수동 저장 — */
+    document.getElementById('btn-save').addEventListener('click', () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      Jbora.toast('저장했습니다 💾', 'success');
+      autosaveEl.textContent = '✓ 저장됨';
+    });
+
+    /* — 저장 초기화 — */
+    document.getElementById('btn-clear-storage').addEventListener('click', () => {
+      if (!confirm('저장된 편집 내용을 초기화할까요?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      applyPreset('basic');
+      Jbora.toast('초기화했습니다', 'info');
+    });
+
+    /* — 제목 입력 — */
+    titleInput.addEventListener('input', () => {
+      state.title = titleInput.value;
+      scheduleAutosave();
+    });
+
+    /* — PNG 다운로드 (html2canvas 없이 안내) — */
+    document.getElementById('btn-screenshot').addEventListener('click', () => {
+      Jbora.toast('PNG 다운로드는 주문 완료 후 제공됩니다', 'info');
+    });
+
+    /* ──────────────────────────────────────────
+       9. URL 파라미터 처리 (templates.html에서 진입 시)
+    ────────────────────────────────────────── */
+    const urlParams = new URLSearchParams(location.search);
+    const templateId = urlParams.get('template') || urlParams.get('design');
+    if (templateId) {
+      const design = designs.find(d => d.id === Number(templateId));
+      if (design) {
+        state.title = design.name;
+        const catPreset = {
+          opening: 'opening', event: 'event', election: 'election',
+          sale: 'basic', food: 'opening', church: 'simple', school: 'event',
+          sports: 'event', realestate: 'basic', general: 'simple',
+        };
+        applyPreset(catPreset[design.category] || 'basic');
+        state.mainText = design.name;
+        dcMain.textContent = design.name;
+        titleInput.value = design.name;
+      }
+    }
+
+    /* ──────────────────────────────────────────
+       10. 초기화
+    ────────────────────────────────────────── */
+    const restored = loadFromStorage();
+    if (!restored) {
+      applyPreset('basic');
+    }
+    syncAllToCanvas();
+    syncUIFromState();
+    pushHistory(); /* 초기 상태를 히스토리에 저장 */
+
+  });
+  </script>
+</body>
+</html>
