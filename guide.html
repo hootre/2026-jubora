@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이용안내 | 주보라 – 교회 현수막·배너 전문</title>
+  <meta name="description" content="주보라 이용안내 – 주문 방법, 결제, 제작기간, 배송까지 한눈에 확인하세요." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── 페이지 전용 ── */
+    .info-hero {
+      background: linear-gradient(135deg, #0367A6 0%, #024f80 100%);
+      color: #fff;
+      padding: 48px 0 36px;
+    }
+    .info-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .info-hero p  { opacity: .85; font-size: 1.05rem; }
+
+    .info-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* 스텝 카드 */
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 56px;
+      position: relative;
+    }
+    .step-list::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: #e5edf5;
+    }
+    .step-item {
+      display: flex;
+      gap: 20px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      position: relative;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #0367A6;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .step-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+    .step-body p, .step-body li {
+      font-size: .9rem;
+      color: #555;
+      line-height: 1.75;
+    }
+    .step-body ul { padding-left: 18px; }
+    .step-body ul li { list-style: disc; }
+
+    /* 섹션 제목 */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #0367A6;
+    }
+    .section-title span { color: #0367A6; }
+
+    /* 안내 박스 */
+    .info-box {
+      background: #e8f3fb;
+      border-left: 4px solid #0367A6;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: .9rem;
+      color: #333;
+      line-height: 1.7;
+    }
+    .info-box strong { color: #0367A6; }
+
+    .warn-box {
+      background: #fff8e1;
+      border-left: 4px solid #f39c12;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* FAQ */
+    .faq-list { margin-bottom: 56px; }
+    .faq-item {
+      border: 1px solid #e5edf5;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: .92rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      user-select: none;
+    }
+    .faq-q:hover { background: #f8fbff; }
+    .faq-q::before { content: 'Q'; color: #0367A6; font-weight: 800; font-size: 1rem; }
+    .faq-q .arrow { margin-left: auto; transition: transform .2s; font-size: .8rem; color: #aaa; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 14px 20px 16px 44px;
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.75;
+      border-top: 1px solid #f0f4f8;
+      background: #fafcff;
+    }
+    .faq-a.open { display: block; }
+
+    /* CTA */
+    .guide-cta {
+      background: linear-gradient(135deg, #0367A6, #024f80);
+      border-radius: 16px;
+      padding: 36px 32px;
+      text-align: center;
+      color: #fff;
+      margin-top: 40px;
+    }
+    .guide-cta h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .guide-cta p  { opacity: .85; margin-bottom: 20px; font-size: .95rem; }
+    .guide-cta .btn-cta {
+      display: inline-block;
+      background: #fff;
+      color: #0367A6;
+      font-weight: 700;
+      border-radius: 30px;
+      padding: 12px 32px;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .guide-cta .btn-cta:hover { opacity: .9; }
+
+    /* 반응형 */
+    @media (max-width: 600px) {
+      .info-hero h1 { font-size: 1.5rem; }
+      .step-item { padding: 18px 16px; }
+      .step-list::before { left: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══ -->
+  <header id="site-header">
+    <div class="header-top">
+      <div class="container">
+        <span>📞 평일 09:00 – 18:00 | 토 09:00 – 13:00</span>
+        <div class="header-top-links">
+          <a href="login.html">로그인</a>
+          <a href="register.html">회원가입</a>
+          <a href="#">고객센터</a>
+          <a href="order.html">주문조회</a>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><span>주</span></div>
+          <div>주보라<span class="logo-sub">현수막·배너 전문</span></div>
+        </a>
+        <div class="header-search">
+          <input type="text" placeholder="찾으시는 제품을 검색하세요" />
+          <button type="button" aria-label="검색">🔍</button>
+        </div>
+        <div class="header-actions">
+          <button class="header-action-btn" type="button"><span class="icon">👤</span>마이페이지</button>
+          <button class="header-action-btn" type="button"><span class="icon">🛒</span>장바구니</button>
+          <button class="header-action-btn" type="button"><span class="icon">❤️</span>찜목록</button>
+        </div>
+        <button class="hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav id="site-nav" aria-label="주메뉴">
+      <div class="container">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+          <li class="nav-item">
+            <a href="templates.html" class="nav-link">시안보기 ▾</a>
+            <div class="nav-dropdown">
+              <a href="templates.html?cat=horizontal">가로형 현수막</a>
+              <a href="templates.html?cat=season">절기 현수막</a>
+              <a href="templates.html?cat=worship">예배·행사 현수막</a>
+              <a href="templates.html?cat=vertical">세로형 배너</a>
+              <a href="templates.html?cat=print">인쇄물</a>
+              <a href="templates.html?cat=goods">교회용품</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="editor.html" class="nav-link">직접편집</a></li>
+          <li class="nav-item"><a href="guide.html" class="nav-link active">이용안내</a></li>
+          <li class="nav-item"><a href="price.html" class="nav-link">가격안내</a></li>
+          <li class="nav-item"><a href="order.html" class="nav-link">주문하기</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">묻고답하기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="info-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="경로" style="margin-bottom:12px; opacity:.7; font-size:.85rem;">
+        <a href="index.html" style="color:#fff;">홈</a>
+        <span style="margin:0 6px;">›</span>
+        <span>이용안내</span>
+      </nav>
+      <h1>이용안내</h1>
+      <p>주보라 주문부터 배송까지, 전 과정을 안내해드립니다</p>
+    </div>
+  </section>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+    <div class="info-wrap">
+
+      <!-- 주문 프로세스 -->
+      <h2 class="section-title">📦 <span>주문 프로세스</span></h2>
+      <div class="step-list">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>시안 선택</h3>
+            <p>원하시는 시안을 <a href="templates.html" style="color:#0367A6; font-weight:600;">시안보기</a>에서 고르거나, 직접 문구·이미지를 준비해주세요. 교회 로고·사진 파일을 미리 준비하시면 더 빠르게 진행됩니다.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>주문서 작성</h3>
+            <p>홈페이지 <a href="order.html" style="color:#0367A6; font-weight:600;">주문서</a>를 통해 접수해주세요.</p>
+            <ul>
+              <li>규격(가로×세로), 수량, 원하시는 문구를 정확히 입력해주세요</li>
+              <li>한글·워드 등으로 작성한 원고가 있으면 첨부파일로 업로드 가능합니다</li>
+              <li>용량이 큰 파일(20MB 이상)은 웹하드·카카오톡으로 보내주세요</li>
+              <li>특별히 원하시는 사진은 원본 파일(JPG·PNG 권장)로 첨부해주세요</li>
+              <li>수정 사항, 참고 내용은 기타란에 상세히 적어주시면 정확한 디자인이 가능합니다</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>결제 (입금)</h3>
+            <p>주문 완료 후 아래 계좌로 입금해주세요. 디자인 시안 작업 전 고객님께 먼저 연락드립니다.</p>
+            <div class="info-box">
+              <strong>입금 계좌 안내</strong><br>
+              은행명 및 계좌번호는 주문 완료 후 문자·이메일로 안내됩니다.<br>
+              입금자명은 반드시 <strong>주문자 성함</strong>으로 해주세요.
+            </div>
+            <div class="warn-box">
+              ⚠️ 입금 확인 후 디자인 작업이 시작됩니다. 미입금 주문은 자동 취소될 수 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>디자인 시안 확인</h3>
+            <p>입금 확인 후 디자인 시안을 제작하여 이메일 또는 카카오톡으로 발송해드립니다. 시안 확인 후 수정 요청이 가능하며, <strong>최종 시안 승인 후</strong> 인쇄·제작이 진행됩니다.</p>
+            <div class="info-box">
+              기본 수정은 <strong>2회</strong>까지 무료이며, 초과 수정은 별도 비용이 발생할 수 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h3>제작 및 출고</h3>
+            <p>특이 사항이 없는 한 <strong>시안 확인 후 48시간(2영업일) 이내</strong>에 제작이 완료됩니다.</p>
+            <ul>
+              <li>주문이 집중되는 시기(절기·연말)에는 일정이 다소 늦어질 수 있습니다</li>
+              <li>급하게 필요하신 경우 주문 시 희망 날짜를 기재해주세요</li>
+              <li>원고 재수정이 발생하면 제작 일정이 연장될 수 있습니다</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h3>배송</h3>
+            <p>CJ대한통운 택배로 발송되며, 출고 후 <strong>1~2영업일</strong> 내 수령 가능합니다.</p>
+            <ul>
+              <li>배송비는 기본 <strong>4,000원</strong>이며, 50,000원 이상 주문 시 무료 배송</li>
+              <li>도서 산간 지역은 추가 배송비가 발생할 수 있습니다</li>
+              <li>배송 조회는 주문 접수 문자에 포함된 송장번호로 확인하세요</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 회원 서비스 -->
+      <h2 class="section-title">👤 <span>회원 서비스</span></h2>
+      <div style="background:#fff; border-radius:14px; padding:28px; box-shadow:0 2px 10px rgba(0,0,0,.06); margin-bottom:48px;">
+        <p style="font-size:.92rem; color:#444; line-height:1.85; margin-bottom:16px;">
+          회원가입은 무료이며, 구글 계정으로 1초 만에 가입하실 수 있습니다.<br>
+          주보라는 창의적인 디자인과 최상의 품질, 합리적인 가격으로 교회 현수막 제작을 도와드립니다.
+        </p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:12px;">
+          <div style="background:#f0f7ff; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:1.6rem; margin-bottom:6px;">📋</div>
+            <div style="font-weight:700; font-size:.9rem; color:#1a1a2e;">주문 내역 조회</div>
+            <div style="font-size:.8rem; color:#888; margin-top:4px;">언제든 접수 현황 확인</div>
+          </div>
+          <div style="background:#f0f7ff; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:1.6rem; margin-bottom:6px;">🔔</div>
+            <div style="font-weight:700; font-size:.9rem; color:#1a1a2e;">제작 현황 알림</div>
+            <div style="font-size:.8rem; color:#888; margin-top:4px;">SMS·이메일로 안내</div>
+          </div>
+          <div style="background:#f0f7ff; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:1.6rem; margin-bottom:6px;">❤️</div>
+            <div style="font-weight:700; font-size:.9rem; color:#1a1a2e;">찜 목록 저장</div>
+            <div style="font-size:.8rem; color:#888; margin-top:4px;">마음에 드는 시안 보관</div>
+          </div>
+          <div style="background:#f0f7ff; border-radius:10px; padding:16px; text-align:center;">
+            <div style="font-size:1.6rem; margin-bottom:6px;">💰</div>
+            <div style="font-weight:700; font-size:.9rem; color:#1a1a2e;">회원 할인 혜택</div>
+            <div style="font-size:.8rem; color:#888; margin-top:4px;">재주문 고객 추가 할인</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <h2 class="section-title">💬 <span>자주 묻는 질문</span></h2>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <div class="faq-q">주문한 디자인을 수정하고 싶어요. <span class="arrow">▼</span></div>
+          <div class="faq-a">시안 확인 단계에서 수정 요청이 가능합니다. 기본 2회까지 무료 수정을 제공하며, 최종 승인 후 인쇄 진행 시에는 수정이 불가합니다. 인쇄 전에 꼭 꼼꼼히 확인해주세요.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">규격이 정해져 있나요? 원하는 사이즈로 주문 가능한가요? <span class="arrow">▼</span></div>
+          <div class="faq-a">네, 원하시는 규격으로 주문 가능합니다. 다만 비규격 주문 시 재단비(2,000~5,000원)가 추가될 수 있습니다. 가격표의 규격(70cm·90cm·105cm·120cm·150cm)에 맞추시면 더 저렴하게 제작하실 수 있습니다.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">교회 로고나 사진 파일을 어떻게 보내나요? <span class="arrow">▼</span></div>
+          <div class="faq-a">주문서 내 첨부파일 기능을 이용하시면 됩니다. 파일 용량이 크거나(20MB 이상), 여러 장인 경우에는 카카오톡 또는 이메일로 보내주시면 됩니다. 이미지는 원본 해상도(300DPI 이상)로 제공해주시면 선명한 인쇄물을 받으실 수 있습니다.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">급하게 주문해야 하는데 빠른 제작이 가능한가요? <span class="arrow">▼</span></div>
+          <div class="faq-a">주문서 기타란에 희망 수령일을 기재해주시면 최대한 맞춰드립니다. 당일 또는 익일 발송이 필요한 경우 전화 문의(평일 09:00~18:00)를 통해 사전에 확인해주세요. 절기·연말 성수기에는 제작 일정이 다소 늦어질 수 있습니다.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">제품을 받았는데 불량이 있어요. 어떻게 하나요? <span class="arrow">▼</span></div>
+          <div class="faq-a">수령 후 2일 이내에 제품 불량 사진과 함께 묻고답하기 또는 고객센터로 연락주시면 재제작 또는 환불 처리해드립니다. 단, 고객 요청 오류(문구 오탈자, 사이즈 오기재 등)로 인한 경우는 교환·환불이 어려울 수 있습니다.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">현수막 소재는 어떻게 되나요? <span class="arrow">▼</span></div>
+          <div class="faq-a">현수막은 기본 <strong>타포린(방수)</strong> 소재를 사용합니다. 실내 배너는 PVC 또는 패브릭 소재로 제작 가능하며, 주문 시 소재 선택이 가능합니다. 야외용 현수막은 UV 코팅 처리로 색상이 오래 유지됩니다.</div>
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="guide-cta">
+        <h3>지금 바로 주문하시겠어요?</h3>
+        <p>교회 현수막·배너 전문 주보라가 빠르고 정확하게 제작해드립니다</p>
+        <a href="order.html" class="btn-cta">📋 주문하기</a>
+        &nbsp;&nbsp;
+        <a href="price.html" class="btn-cta" style="background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.5);">💰 가격 확인하기</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer id="site-footer">
+    <div class="footer-main">
+      <div class="container">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><span>주</span></div>
+            주보라
+          </a>
+          <p>현수막·배너 전문 온라인 제작 플랫폼.<br>빠르고 합리적인 가격으로 여러분의 메시지를 세상에 전달합니다.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="카카오톡">💬</a>
+            <a href="#" aria-label="인스타그램">📸</a>
+            <a href="#" aria-label="유튜브">▶</a>
+            <a href="#" aria-label="블로그">✏️</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>서비스</h4>
+          <ul>
+            <li><a href="templates.html">시안보기</a></li>
+            <li><a href="order.html">주문하기</a></li>
+            <li><a href="guide.html">이용안내</a></li>
+            <li><a href="price.html">가격안내</a></li>
+            <li><a href="editor.html">직접편집</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>고객센터</h4>
+          <ul>
+            <li><a href="#">자주 묻는 질문</a></li>
+            <li><a href="#">1:1 문의하기</a></li>
+            <li><a href="#">공지사항</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>연락처</h4>
+          <div class="footer-contact-item">
+            <span class="icon">📞</span>
+            <div>
+              <strong style="color:#fff;font-size:1.1rem;">010-7737-1895</strong><br>
+              평일 09:00 – 18:00 / 토 09:00 – 13:00
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <span class="icon">✉️</span>
+            <span><a href="mailto:mm1895@naver.com" style="color:inherit;">mm1895@naver.com</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="footer-biz-info">
+          상호명: 보라미디어 &nbsp;|&nbsp; 사업자등록번호: 593-56-00232 &nbsp;|&nbsp;
+          주소: 경기도 하남시 미사강변한강로 135
+        </div>
+        <p class="footer-copyright">© 2026 주보라 · All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/cloudinary-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // FAQ 토글
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('open');
+        q.nextElementSibling.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

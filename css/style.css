@@ -210,7 +210,7 @@ select.form-control { cursor: pointer; }
 }
 .header-top a { color: rgba(255,255,255,.85); transition: color var(--transition); }
 .header-top a:hover { color: #fff; }
-.header-top-links { display: flex; gap: 16px; }
+.header-top-links { display: flex; gap: 16px; align-items: center; flex-wrap: nowrap; white-space: nowrap; }
 
 .header-main .container {
   display: flex;

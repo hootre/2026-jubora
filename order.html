@@ -33,10 +33,10 @@
       <div class="container">
         <span>📞 평일 09:00 – 18:00 | 토 09:00 – 13:00</span>
         <div class="header-top-links">
-          <a href="#">로그인</a>
-          <a href="#">회원가입</a>
+          <a href="login.html">로그인</a>
+          <a href="register.html">회원가입</a>
           <a href="#">고객센터</a>
-          <a href="#">주문조회</a>
+          <a href="order.html">주문조회</a>
         </div>
       </div>
     </div>
@@ -65,30 +65,31 @@
     <nav id="site-nav" aria-label="주메뉴">
       <div class="container">
         <ul class="nav-list">
-          <li class="nav-item"><a href="index.html"    class="nav-link">홈</a></li>
+
+          <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+
           <li class="nav-item">
-            <a href="templates.html" class="nav-link">제품 카탈로그 ▾</a>
+            <a href="templates.html" class="nav-link">시안보기 ▾</a>
             <div class="nav-dropdown">
-              <a href="#">현수막</a><a href="#">배너</a><a href="#">X-배너</a>
-              <a href="#">롤업 배너</a><a href="#">현수막 스탠드</a><a href="#">명함·스티커</a>
+              <a href="templates.html?cat=horizontal">가로형 현수막</a>
+              <a href="templates.html?cat=season">절기 현수막</a>
+              <a href="templates.html?cat=worship">예배·행사 현수막</a>
+              <a href="templates.html?cat=vertical">세로형 배너</a>
+              <a href="templates.html?cat=print">인쇄물</a>
+              <a href="templates.html?cat=goods">교회용품</a>
             </div>
           </li>
-          <li class="nav-item"><a href="templates.html" class="nav-link">디자인 템플릿</a></li>
-          <li class="nav-item">
-            <a href="editor.html" class="nav-link">직접 제작 ▾</a>
-            <div class="nav-dropdown">
-              <a href="editor.html">온라인 편집기</a><a href="#">파일 직접 업로드</a>
-            </div>
-          </li>
-          <li class="nav-item"><a href="order.html" class="nav-link active">견적·주문</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">이벤트</a></li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">고객센터 ▾</a>
-            <div class="nav-dropdown">
-              <a href="#">자주 묻는 질문</a><a href="#">제작 가이드</a>
-              <a href="#">1:1 문의</a><a href="#">공지사항</a>
-            </div>
-          </li>
+
+          <li class="nav-item"><a href="editor.html" class="nav-link">직접편집</a></li>
+
+          <li class="nav-item"><a href="guide.html" class="nav-link">이용안내</a></li>
+
+          <li class="nav-item"><a href="price.html" class="nav-link">가격안내</a></li>
+
+          <li class="nav-item"><a href="order.html" class="nav-link active">주문하기</a></li>
+
+          <li class="nav-item"><a href="#" class="nav-link">묻고답하기</a></li>
+
         </ul>
       </div>
     </nav>
@@ -619,8 +620,13 @@
   </footer>
   <!-- /FOOTER -->
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
   <script src="js/cloudinary-config.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
   <script>
   /* ================================================================
      주보라 주문 페이지 – 완전 구현

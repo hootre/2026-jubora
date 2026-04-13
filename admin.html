@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 패널 | 주보라</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body class="admin-body">
+
+<!-- ════════════════════════════════════
+     사이드바
+════════════════════════════════════ -->
+<aside class="admin-sidebar" id="adminSidebar">
+
+  <div class="admin-sidebar-logo">
+    <div class="logo-icon"><span>주</span></div>
+    <span class="logo-name">주보라</span>
+    <span class="admin-badge">ADMIN</span>
+  </div>
+
+  <nav class="admin-nav">
+    <div class="admin-nav-section">메인</div>
+    <a href="#" class="active" data-section="dashboard">
+      <span class="nav-icon">📊</span> 대시보드
+    </a>
+
+    <div class="admin-nav-section">주문 관리</div>
+    <a href="#" data-section="orders">
+      <span class="nav-icon">📦</span> 주문 목록
+      <span class="admin-nav-badge" id="nav-pending-count">0</span>
+    </a>
+    <a href="#" data-section="estimates">
+      <span class="nav-icon">📋</span> 견적 요청
+    </a>
+
+    <div class="admin-nav-section">콘텐츠</div>
+    <a href="#" data-section="templates">
+      <span class="nav-icon">🖼</span> 시안/템플릿
+    </a>
+    <a href="#" data-section="notice">
+      <span class="nav-icon">📢</span> 공지사항
+    </a>
+
+    <div class="admin-nav-section">사용자</div>
+    <a href="#" data-section="users">
+      <span class="nav-icon">👥</span> 회원 목록
+    </a>
+
+    <div class="admin-nav-section">설정</div>
+    <a href="#" data-section="settings">
+      <span class="nav-icon">⚙️</span> 사이트 설정
+    </a>
+  </nav>
+
+  <div class="admin-sidebar-footer">
+    <a href="index.html">← 사이트 바로가기</a>
+    <a href="#" id="sidebar-logout">로그아웃</a>
+  </div>
+</aside>
+
+<!-- ════════════════════════════════════
+     메인
+════════════════════════════════════ -->
+<div class="admin-main">
+
+  <!-- 상단 바 -->
+  <header class="admin-topbar">
+    <div class="admin-topbar-title" id="topbar-title">대시보드</div>
+    <div class="admin-topbar-right">
+      <span style="font-size:.8rem; color:#aaa;" id="topbar-date"></span>
+      <div class="admin-user">
+        <div class="admin-avatar" id="admin-avatar">관</div>
+        <span id="admin-name">관리자</span>
+      </div>
+      <button class="btn-admin-logout" id="btn-logout">로그아웃</button>
+    </div>
+  </header>
+
+  <!-- 콘텐츠 -->
+  <main class="admin-content">
+
+    <!-- ══ 대시보드 ══ -->
+    <section class="admin-section active" id="section-dashboard">
+
+      <!-- 통계 카드 -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">📦</div>
+          <div class="stat-info">
+            <div class="stat-label">전체 주문</div>
+            <div class="stat-value" id="stat-total-orders">0</div>
+            <div class="stat-change">이번 달 신규</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon orange">⏳</div>
+          <div class="stat-info">
+            <div class="stat-label">처리 대기</div>
+            <div class="stat-value" id="stat-pending">0</div>
+            <div class="stat-change">확인 필요</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">👥</div>
+          <div class="stat-info">
+            <div class="stat-label">전체 회원</div>
+            <div class="stat-value" id="stat-users">0</div>
+            <div class="stat-change">가입 회원 수</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">💬</div>
+          <div class="stat-info">
+            <div class="stat-label">견적 요청</div>
+            <div class="stat-value" id="stat-estimates">0</div>
+            <div class="stat-change">미처리 건</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 차트 + 최근 주문 -->
+      <div class="chart-row">
+        <!-- 카테고리별 주문 -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>카테고리별 주문 현황</h3>
+          </div>
+          <div class="admin-card-body mini-chart">
+            <div class="chart-bar-list" id="category-chart">
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">가로형현수막</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill" style="width:75%"></div></div>
+                <span class="chart-bar-num">75%</span>
+              </div>
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">절기현수막</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill green" style="width:52%"></div></div>
+                <span class="chart-bar-num">52%</span>
+              </div>
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">예배·행사</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill orange" style="width:38%"></div></div>
+                <span class="chart-bar-num">38%</span>
+              </div>
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">세로형배너</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill" style="width:28%"></div></div>
+                <span class="chart-bar-num">28%</span>
+              </div>
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">인쇄물</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill red" style="width:18%"></div></div>
+                <span class="chart-bar-num">18%</span>
+              </div>
+              <div class="chart-bar-item">
+                <span class="chart-bar-label">교회용품</span>
+                <div class="chart-bar-track"><div class="chart-bar-fill orange" style="width:10%"></div></div>
+                <span class="chart-bar-num">10%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 최근 주문 -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>최근 주문</h3>
+            <button class="btn-sm" onclick="showSection('orders')">전체 보기</button>
+          </div>
+          <div class="admin-card-body">
+            <div class="order-mini-list" id="recent-orders-list">
+              <div class="empty-state">
+                <div class="empty-icon">📭</div>
+                <p>아직 주문이 없습니다</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 공지 등록 -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>📢 사이트 공지 등록</h3>
+        </div>
+        <div class="admin-card-body" style="padding:18px 22px;">
+          <div class="notice-form">
+            <textarea id="notice-text" placeholder="사이트 상단에 표시할 공지 내용을 입력하세요. (비우면 공지 숨김)"></textarea>
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button class="btn-sm primary" onclick="saveNotice()">공지 저장</button>
+              <button class="btn-sm" onclick="clearNotice()">공지 삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══ 주문 목록 ══ -->
+    <section class="admin-section" id="section-orders">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>주문 목록</h3>
+          <button class="btn-sm primary" onclick="exportOrders()">📥 엑셀 내보내기</button>
+        </div>
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span>🔍</span>
+            <input type="text" id="order-search" placeholder="주문번호, 교회명, 이름 검색..." oninput="filterOrders()">
+          </div>
+          <select class="btn-sm" id="order-status-filter" onchange="filterOrders()">
+            <option value="">전체 상태</option>
+            <option value="pending">대기</option>
+            <option value="progress">제작중</option>
+            <option value="done">완료</option>
+            <option value="cancel">취소</option>
+          </select>
+        </div>
+        <div class="admin-card-body">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>주문번호</th>
+                <th>교회명</th>
+                <th>담당자</th>
+                <th>품목</th>
+                <th>금액</th>
+                <th>상태</th>
+                <th>주문일</th>
+                <th>관리</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <tr>
+                <td colspan="8">
+                  <div class="empty-state">
+                    <div class="empty-icon">📭</div>
+                    <p>주문 내역이 없습니다</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 견적 요청 ══ -->
+    <section class="admin-section" id="section-estimates">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>견적 요청 목록</h3>
+        </div>
+        <div class="admin-card-body">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>교회명</th>
+                <th>연락처</th>
+                <th>품목</th>
+                <th>요청일</th>
+                <th>처리</th>
+              </tr>
+            </thead>
+            <tbody id="estimates-tbody">
+              <tr>
+                <td colspan="6">
+                  <div class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <p>견적 요청이 없습니다</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 시안/템플릿 ══ -->
+    <section class="admin-section" id="section-templates">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>시안 · 템플릿 관리</h3>
+          <button class="btn-sm primary" onclick="openAddTemplateModal()">+ 시안 추가</button>
+        </div>
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span>🔍</span>
+            <input type="text" placeholder="시안 이름 검색...">
+          </div>
+          <select class="btn-sm">
+            <option>전체 카테고리</option>
+            <option>가로형현수막</option>
+            <option>절기현수막</option>
+            <option>예배·행사</option>
+            <option>세로형배너</option>
+            <option>인쇄물</option>
+            <option>교회용품</option>
+          </select>
+        </div>
+        <div class="admin-card-body">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>시안명</th>
+                <th>카테고리</th>
+                <th>태그</th>
+                <th>등록일</th>
+                <th>관리</th>
+              </tr>
+            </thead>
+            <tbody id="templates-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 공지사항 ══ -->
+    <section class="admin-section" id="section-notice">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>공지사항 관리</h3>
+          <button class="btn-sm primary" onclick="openNoticeModal()">+ 공지 작성</button>
+        </div>
+        <div class="admin-card-body">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>노출</th>
+                <th>관리</th>
+              </tr>
+            </thead>
+            <tbody id="notice-tbody">
+              <tr>
+                <td colspan="5">
+                  <div class="empty-state">
+                    <div class="empty-icon">📢</div>
+                    <p>공지사항이 없습니다</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 회원 목록 ══ -->
+    <section class="admin-section" id="section-users">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h3>회원 목록</h3>
+        </div>
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <span>🔍</span>
+            <input type="text" id="user-search" placeholder="이름, 이메일, 교회명 검색..." oninput="filterUsers()">
+          </div>
+        </div>
+        <div class="admin-card-body">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>교회명</th>
+                <th>전화번호</th>
+                <th>가입 방법</th>
+                <th>역할</th>
+                <th>가입일</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr>
+                <td colspan="7">
+                  <div class="empty-state">
+                    <div class="empty-icon">👥</div>
+                    <p>가입 회원이 없습니다</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ 설정 ══ -->
+    <section class="admin-section" id="section-settings">
+      <div class="admin-card" style="max-width:600px;">
+        <div class="admin-card-header"><h3>⚙️ 사이트 설정</h3></div>
+        <div class="admin-card-body" style="padding:22px;">
+          <div style="display:flex; flex-direction:column; gap:18px;">
+
+            <div class="form-field">
+              <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:6px;">사이트 이름</label>
+              <input type="text" id="setting-site-name" value="주보라 – 교회 현수막·배너 전문"
+                style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem; outline:none;">
+            </div>
+
+            <div class="form-field">
+              <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:6px;">고객센터 전화번호</label>
+              <input type="text" id="setting-phone" value="010-0000-0000"
+                style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem; outline:none;">
+            </div>
+
+            <div class="form-field">
+              <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:6px;">사업자등록번호</label>
+              <input type="text" id="setting-bizno" value="593-56-00232"
+                style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem; outline:none;">
+            </div>
+
+            <div class="form-field">
+              <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:6px;">배송 소요일 안내</label>
+              <input type="text" id="setting-delivery" value="주문 후 3~5 영업일"
+                style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem; outline:none;">
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <label style="font-size:.85rem; font-weight:600; color:#555;">주문 접수 ON/OFF</label>
+              <label style="position:relative; display:inline-block; width:44px; height:24px; cursor:pointer;">
+                <input type="checkbox" id="setting-order-on" checked style="opacity:0; width:0; height:0;">
+                <span id="toggle-track" style="position:absolute; inset:0; background:#0367A6; border-radius:12px; transition:.2s;"></span>
+                <span style="position:absolute; top:3px; left:3px; width:18px; height:18px; background:#fff; border-radius:50%; transition:.2s;" id="toggle-thumb"></span>
+              </label>
+              <span id="order-on-label" style="font-size:.82rem; color:#27ae60; font-weight:600;">접수 중</span>
+            </div>
+
+            <button class="btn-sm primary" style="width:120px;" onclick="saveSettings()">설정 저장</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ════════════════════════════════════
+     주문 상태 수정 모달
+════════════════════════════════════ -->
+<div class="admin-modal-overlay" id="modal-order">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <h3>주문 상태 변경</h3>
+      <button class="admin-modal-close" onclick="closeModal('modal-order')">✕</button>
+    </div>
+    <div class="admin-modal-body">
+      <p style="font-size:.88rem; color:#555; margin-bottom:14px;">주문번호: <strong id="modal-order-num">-</strong></p>
+      <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:8px;">상태 변경</label>
+      <select id="modal-order-status" style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem;">
+        <option value="pending">⏳ 대기</option>
+        <option value="progress">🔧 제작중</option>
+        <option value="done">✅ 완료</option>
+        <option value="cancel">❌ 취소</option>
+      </select>
+      <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-top:14px; margin-bottom:8px;">메모</label>
+      <textarea id="modal-order-memo" style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:10px 12px; font-size:.85rem; resize:vertical; min-height:70px; font-family:inherit;" placeholder="내부 메모..."></textarea>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="btn-sm" onclick="closeModal('modal-order')">취소</button>
+      <button class="btn-sm primary" onclick="updateOrderStatus()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     공지 작성 모달
+════════════════════════════════════ -->
+<div class="admin-modal-overlay" id="modal-notice">
+  <div class="admin-modal">
+    <div class="admin-modal-header">
+      <h3>공지사항 작성</h3>
+      <button class="admin-modal-close" onclick="closeModal('modal-notice')">✕</button>
+    </div>
+    <div class="admin-modal-body">
+      <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:8px;">제목</label>
+      <input type="text" id="notice-title-input" placeholder="공지 제목"
+        style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:9px 12px; font-size:.88rem; margin-bottom:12px; outline:none;">
+      <label style="font-size:.85rem; font-weight:600; color:#555; display:block; margin-bottom:8px;">내용</label>
+      <textarea id="notice-content-input" placeholder="공지 내용"
+        style="width:100%; border:1px solid #e5e9ef; border-radius:7px; padding:10px 12px; font-size:.85rem; resize:vertical; min-height:100px; font-family:inherit;"></textarea>
+      <label style="display:flex; align-items:center; gap:8px; margin-top:12px; font-size:.85rem; cursor:pointer;">
+        <input type="checkbox" id="notice-visible" checked> 즉시 노출
+      </label>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="btn-sm" onclick="closeModal('modal-notice')">취소</button>
+      <button class="btn-sm primary" onclick="saveNoticeItem()">등록</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/cloudinary-config.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+<script>
+/* ══════════════════════════════════════════
+   관리자 패널 - 메인 스크립트
+══════════════════════════════════════════ */
+
+const ORDERS_KEY    = 'jubora_orders';
+const ESTIMATES_KEY = 'jubora_estimates';
+const NOTICES_KEY   = 'jubora_notices';
+const SETTINGS_KEY  = 'jubora_settings';
+
+let currentOrderId = null;
+
+/* ── 권한 체크 ── */
+document.addEventListener('DOMContentLoaded', () => {
+  const user = Auth.getCurrentUser();
+  if (!user) {
+    alert('로그인이 필요합니다.');
+    location.href = 'login.html?redirect=admin.html';
+    return;
+  }
+  if (user.role !== 'admin') {
+    alert('관리자 권한이 필요합니다.');
+    location.href = 'index.html';
+    return;
+  }
+
+  // 관리자 정보 표시
+  document.getElementById('admin-name').textContent = user.name || '관리자';
+  const initial = (user.name || '관')[0];
+  document.getElementById('admin-avatar').textContent = initial;
+
+  // 날짜 표시
+  const now = new Date();
+  document.getElementById('topbar-date').textContent =
+    now.getFullYear() + '.' + String(now.getMonth()+1).padStart(2,'0') + '.' + String(now.getDate()).padStart(2,'0');
+
+  // 초기 데이터 로드
+  loadDashboard();
+  loadOrdersTable();
+  loadUsersTable();
+  loadTemplatesTable();
+  loadNoticesTable();
+  loadSettings();
+
+  // 토글 스위치 동작
+  const orderToggle = document.getElementById('setting-order-on');
+  orderToggle.addEventListener('change', () => {
+    const on = orderToggle.checked;
+    document.getElementById('toggle-track').style.background = on ? '#0367A6' : '#ccc';
+    document.getElementById('toggle-thumb').style.left = on ? '23px' : '3px';
+    document.getElementById('order-on-label').textContent = on ? '접수 중' : '접수 중단';
+    document.getElementById('order-on-label').style.color = on ? '#27ae60' : '#e74c3c';
+  });
+});
+
+/* ── 네비 전환 ── */
+document.querySelectorAll('.admin-nav a[data-section]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const sec = link.dataset.section;
+    showSection(sec);
+    document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+function showSection(id) {
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('section-' + id);
+  if (target) target.classList.add('active');
+
+  const titles = {
+    dashboard: '대시보드', orders: '주문 목록', estimates: '견적 요청',
+    templates: '시안·템플릿 관리', notice: '공지사항', users: '회원 목록', settings: '사이트 설정'
+  };
+  document.getElementById('topbar-title').textContent = titles[id] || id;
+
+  // 네비 활성화
+  document.querySelectorAll('.admin-nav a').forEach(a => {
+    a.classList.toggle('active', a.dataset.section === id);
+  });
+}
+
+/* ── 로그아웃 ── */
+document.getElementById('btn-logout').addEventListener('click', () => Auth.logout());
+document.getElementById('sidebar-logout').addEventListener('click', e => { e.preventDefault(); Auth.logout(); });
+
+/* ══════════════════════════════════════════
+   데이터 헬퍼
+══════════════════════════════════════════ */
+function getOrders()    { try { return JSON.parse(localStorage.getItem(ORDERS_KEY))    || []; } catch { return []; } }
+function getEstimates() { try { return JSON.parse(localStorage.getItem(ESTIMATES_KEY)) || []; } catch { return []; } }
+function getUsers()     { try { return JSON.parse(localStorage.getItem('jubora_users'))|| []; } catch { return []; } }
+function getNotices()   { try { return JSON.parse(localStorage.getItem(NOTICES_KEY))   || []; } catch { return []; } }
+function saveOrders(d)  { localStorage.setItem(ORDERS_KEY,    JSON.stringify(d)); }
+function saveNotices(d) { localStorage.setItem(NOTICES_KEY,   JSON.stringify(d)); }
+
+/* ══════════════════════════════════════════
+   대시보드
+══════════════════════════════════════════ */
+function loadDashboard() {
+  const orders    = getOrders();
+  const users     = getUsers();
+  const estimates = getEstimates();
+  const pending   = orders.filter(o => o.status === 'pending').length;
+
+  document.getElementById('stat-total-orders').textContent = orders.length;
+  document.getElementById('stat-pending').textContent      = pending;
+  document.getElementById('stat-users').textContent        = users.length;
+  document.getElementById('stat-estimates').textContent    = estimates.length;
+  document.getElementById('nav-pending-count').textContent = pending;
+
+  // 최근 주문 5개
+  const recentEl = document.getElementById('recent-orders-list');
+  const recent   = [...orders].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+  if (recent.length === 0) {
+    recentEl.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><p>아직 주문이 없습니다</p></div>';
+  } else {
+    recentEl.innerHTML = recent.map(o => `
+      <div class="order-mini-item">
+        <span class="order-mini-num">${o.id}</span>
+        <div class="order-mini-info">
+          <div class="order-mini-name">${o.church || o.name || '-'}</div>
+          <div class="order-mini-sub">${o.item || ''} · ${formatDate(o.createdAt)}</div>
+        </div>
+        <span class="order-mini-price">${o.price ? o.price.toLocaleString()+'원' : '-'}</span>
+      </div>
+    `).join('');
+  }
+}
+
+/* ══════════════════════════════════════════
+   주문 테이블
+══════════════════════════════════════════ */
+let allOrders = [];
+
+function loadOrdersTable() {
+  allOrders = getOrders();
+  renderOrdersTable(allOrders);
+}
+
+function renderOrdersTable(orders) {
+  const tbody = document.getElementById('orders-tbody');
+  if (orders.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">📭</div><p>주문 내역이 없습니다</p></div></td></tr>';
+    return;
+  }
+  const statusMap = {
+    pending:  '<span class="badge badge-pending">대기</span>',
+    progress: '<span class="badge badge-progress">제작중</span>',
+    done:     '<span class="badge badge-done">완료</span>',
+    cancel:   '<span class="badge badge-cancel">취소</span>',
+  };
+  tbody.innerHTML = [...orders]
+    .sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .map(o => `
+      <tr>
+        <td><strong>${o.id}</strong></td>
+        <td>${o.church || '-'}</td>
+        <td>${o.name || '-'}</td>
+        <td>${o.item || '-'}</td>
+        <td>${o.price ? o.price.toLocaleString()+'원' : '-'}</td>
+        <td>${statusMap[o.status] || o.status}</td>
+        <td>${formatDate(o.createdAt)}</td>
+        <td>
+          <button class="btn-sm" onclick="openOrderModal('${o.id}')">수정</button>
+        </td>
+      </tr>
+    `).join('');
+}
+
+function filterOrders() {
+  const q      = document.getElementById('order-search').value.toLowerCase();
+  const status = document.getElementById('order-status-filter').value;
+  let filtered = allOrders;
+  if (q)      filtered = filtered.filter(o => (o.id+o.church+o.name+o.item).toLowerCase().includes(q));
+  if (status) filtered = filtered.filter(o => o.status === status);
+  renderOrdersTable(filtered);
+}
+
+function openOrderModal(id) {
+  currentOrderId = id;
+  const order = allOrders.find(o => o.id === id);
+  if (!order) return;
+  document.getElementById('modal-order-num').textContent   = id;
+  document.getElementById('modal-order-status').value      = order.status || 'pending';
+  document.getElementById('modal-order-memo').value        = order.memo || '';
+  document.getElementById('modal-order').classList.add('open');
+}
+
+function updateOrderStatus() {
+  const orders = getOrders();
+  const idx    = orders.findIndex(o => o.id === currentOrderId);
+  if (idx === -1) return;
+  orders[idx].status = document.getElementById('modal-order-status').value;
+  orders[idx].memo   = document.getElementById('modal-order-memo').value;
+  saveOrders(orders);
+  closeModal('modal-order');
+  loadOrdersTable();
+  loadDashboard();
+  showToast('주문 상태가 업데이트됐습니다.');
+}
+
+function exportOrders() {
+  const orders = getOrders();
+  if (orders.length === 0) { showToast('내보낼 주문이 없습니다.'); return; }
+  const header = ['주문번호','교회명','담당자','품목','금액','상태','주문일'];
+  const rows = orders.map(o => [
+    o.id, o.church||'', o.name||'', o.item||'',
+    o.price||'', o.status||'', formatDate(o.createdAt)
+  ]);
+  const csv = [header, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob(['\uFEFF'+csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '주보라_주문목록_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+/* ══════════════════════════════════════════
+   회원 테이블
+══════════════════════════════════════════ */
+let allUsers = [];
+
+function loadUsersTable() {
+  allUsers = getUsers();
+  renderUsersTable(allUsers);
+}
+
+function renderUsersTable(users) {
+  const tbody = document.getElementById('users-tbody');
+  if (users.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">👥</div><p>가입 회원이 없습니다</p></div></td></tr>';
+    return;
+  }
+  const providerMap = { 'google.com': '🔵 구글', 'password': '📧 이메일', 'local': '🔑 로컬' };
+  tbody.innerHTML = users.map(u => `
+    <tr>
+      <td><strong>${u.name || '-'}</strong></td>
+      <td>${u.email || '-'}</td>
+      <td>${u.church || '-'}</td>
+      <td>${u.phone || '-'}</td>
+      <td>${providerMap[u.provider] || u.provider || '-'}</td>
+      <td>${u.role === 'admin'
+        ? '<span class="badge badge-admin">관리자</span>'
+        : '<span class="badge badge-member">회원</span>'}</td>
+      <td>${formatDate(u.createdAt)}</td>
+    </tr>
+  `).join('');
+}
+
+function filterUsers() {
+  const q = document.getElementById('user-search').value.toLowerCase();
+  const filtered = q ? allUsers.filter(u => (u.name+u.email+u.church).toLowerCase().includes(q)) : allUsers;
+  renderUsersTable(filtered);
+}
+
+/* ══════════════════════════════════════════
+   시안 테이블
+══════════════════════════════════════════ */
+function loadTemplatesTable() {
+  const tbody = document.getElementById('templates-tbody');
+  if (typeof designs === 'undefined' || designs.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="empty-icon">🖼</div><p>시안이 없습니다</p></div></td></tr>';
+    return;
+  }
+  const catName = typeof getCategoryName === 'function' ? getCategoryName : (c => c);
+  tbody.innerHTML = designs.map(d => `
+    <tr>
+      <td>${d.id}</td>
+      <td><strong>${d.name}</strong></td>
+      <td>${catName(d.category)}</td>
+      <td>${(d.tags||[]).map(t=>`<span style="background:#f0f2f5;border-radius:4px;padding:1px 7px;font-size:.75rem;">${t}</span>`).join(' ')}</td>
+      <td>-</td>
+      <td>
+        <button class="btn-sm" style="color:#c00;" onclick="showToast('삭제 기능은 준비 중입니다.')">삭제</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openAddTemplateModal() {
+  showToast('시안 추가 기능은 준비 중입니다.');
+}
+
+/* ══════════════════════════════════════════
+   공지사항
+══════════════════════════════════════════ */
+function loadNoticesTable() {
+  const notices = getNotices();
+  const tbody   = document.getElementById('notice-tbody');
+  if (notices.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5"><div class="empty-state"><div class="empty-icon">📢</div><p>공지사항이 없습니다</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = notices.map((n, i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td><strong>${n.title}</strong></td>
+      <td>${formatDate(n.createdAt)}</td>
+      <td>${n.visible ? '<span class="badge badge-done">노출</span>' : '<span class="badge badge-cancel">숨김</span>'}</td>
+      <td>
+        <button class="btn-sm" onclick="toggleNoticeVisible(${i})">${n.visible ? '숨기기' : '노출'}</button>
+        <button class="btn-sm danger" onclick="deleteNotice(${i})" style="margin-left:4px;">삭제</button>
+      </td>
+    </tr>
+  `).join('');
+
+  // 대시보드 공지란 채우기
+  const latest = notices.find(n => n.visible);
+  if (latest) document.getElementById('notice-text').value = latest.title + (latest.content ? '\n' + latest.content : '');
+}
+
+function openNoticeModal() {
+  document.getElementById('notice-title-input').value   = '';
+  document.getElementById('notice-content-input').value = '';
+  document.getElementById('notice-visible').checked     = true;
+  document.getElementById('modal-notice').classList.add('open');
+}
+
+function saveNoticeItem() {
+  const title   = document.getElementById('notice-title-input').value.trim();
+  const content = document.getElementById('notice-content-input').value.trim();
+  if (!title) { showToast('제목을 입력해주세요.'); return; }
+  const notices = getNotices();
+  notices.unshift({ title, content, visible: document.getElementById('notice-visible').checked, createdAt: new Date().toISOString() });
+  saveNotices(notices);
+  closeModal('modal-notice');
+  loadNoticesTable();
+  showToast('공지가 등록됐습니다. 📢');
+}
+
+function toggleNoticeVisible(i) {
+  const notices = getNotices();
+  notices[i].visible = !notices[i].visible;
+  saveNotices(notices);
+  loadNoticesTable();
+}
+
+function deleteNotice(i) {
+  if (!confirm('공지를 삭제하시겠습니까?')) return;
+  const notices = getNotices();
+  notices.splice(i, 1);
+  saveNotices(notices);
+  loadNoticesTable();
+  showToast('공지가 삭제됐습니다.');
+}
+
+function saveNotice() {
+  const text = document.getElementById('notice-text').value.trim();
+  localStorage.setItem('jubora_site_notice', text);
+  showToast(text ? '공지가 저장됐습니다. 📢' : '공지가 삭제됐습니다.');
+}
+
+function clearNotice() {
+  document.getElementById('notice-text').value = '';
+  localStorage.removeItem('jubora_site_notice');
+  showToast('공지가 삭제됐습니다.');
+}
+
+/* ══════════════════════════════════════════
+   설정
+══════════════════════════════════════════ */
+function loadSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {};
+    if (s.siteName)  document.getElementById('setting-site-name').value  = s.siteName;
+    if (s.phone)     document.getElementById('setting-phone').value      = s.phone;
+    if (s.bizno)     document.getElementById('setting-bizno').value      = s.bizno;
+    if (s.delivery)  document.getElementById('setting-delivery').value   = s.delivery;
+    const orderOn = s.orderOn !== false;
+    const toggle = document.getElementById('setting-order-on');
+    toggle.checked = orderOn;
+    document.getElementById('toggle-track').style.background = orderOn ? '#0367A6' : '#ccc';
+    document.getElementById('toggle-thumb').style.left = orderOn ? '23px' : '3px';
+    document.getElementById('order-on-label').textContent = orderOn ? '접수 중' : '접수 중단';
+    document.getElementById('order-on-label').style.color = orderOn ? '#27ae60' : '#e74c3c';
+  } catch {}
+}
+
+function saveSettings() {
+  const s = {
+    siteName: document.getElementById('setting-site-name').value,
+    phone:    document.getElementById('setting-phone').value,
+    bizno:    document.getElementById('setting-bizno').value,
+    delivery: document.getElementById('setting-delivery').value,
+    orderOn:  document.getElementById('setting-order-on').checked,
+  };
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+  showToast('설정이 저장됐습니다. ✅');
+}
+
+/* ══════════════════════════════════════════
+   유틸
+══════════════════════════════════════════ */
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function formatDate(iso) {
+  if (!iso) return '-';
+  const d = new Date(iso);
+  if (isNaN(d)) return '-';
+  return d.getFullYear() + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + String(d.getDate()).padStart(2,'0');
+}
+
+let toastTimer;
+function showToast(msg) {
+  let toast = document.getElementById('admin-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'admin-toast';
+    toast.style.cssText = 'position:fixed;bottom:28px;right:28px;background:#1a1a2e;color:#fff;padding:11px 20px;border-radius:10px;font-size:.88rem;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:opacity .3s;';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+}
+
+// 모달 바깥 클릭 닫기
+document.querySelectorAll('.admin-modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>

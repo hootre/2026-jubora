@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>로그인 | 주보라 – 교회 현수막·배너 전문</title>
+  <meta name="description" content="주보라 회원 로그인. 구글 또는 이메일로 간편 로그인하세요." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body class="auth-page">
+
+  <!-- ── 간략 헤더 ── -->
+  <header style="background:#fff; border-bottom:1px solid var(--border); padding:16px 0;">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <a href="index.html" class="auth-card-logo" style="justify-content:flex-start; margin:0;">
+        <div class="logo-icon"><span>주</span></div>
+        <span class="logo-name">주보라</span>
+      </a>
+      <a href="index.html" style="font-size:.9rem; color:var(--text-muted);">← 메인으로</a>
+    </div>
+  </header>
+
+  <!-- ── 본문 ── -->
+  <div class="auth-wrap">
+    <div class="auth-card">
+
+      <!-- 타이틀 -->
+      <h1 class="auth-card-title">로그인</h1>
+      <p class="auth-card-sub">주보라 회원이시면 아래에서 로그인하세요</p>
+
+      <!-- 오류 알림 -->
+      <div class="auth-alert error" id="login-alert" role="alert">
+        <span>⚠️</span><span id="login-alert-msg"></span>
+      </div>
+
+      <!-- 소셜 로그인 -->
+      <div class="auth-social">
+
+        <!-- 구글 로그인 -->
+        <button class="btn-google" id="btn-google-login" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google로 로그인
+        </button>
+
+        <!-- 카카오 로그인 -->
+        <button class="btn-kakao" id="btn-kakao-login" type="button">
+          <svg viewBox="0 0 24 24" fill="#3c1e1e" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+            <path d="M12 3C6.477 3 2 6.582 2 11c0 2.724 1.57 5.127 3.98 6.668L4.9 21l4.13-2.186A11.42 11.42 0 0 0 12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/>
+          </svg>
+          카카오톡으로 로그인
+        </button>
+
+      </div>
+
+      <!-- 구분선 -->
+      <div class="auth-divider">또는 이메일로 로그인</div>
+
+      <!-- 이메일 로그인 폼 -->
+      <form class="auth-form" id="login-form" novalidate>
+
+        <div class="form-field">
+          <label for="login-email">아이디 또는 이메일</label>
+          <input type="text" id="login-email" name="email"
+                 placeholder="아이디 또는 이메일 주소"
+                 autocomplete="username" />
+          <span class="field-error" id="err-email">아이디 또는 이메일을 입력하세요.</span>
+        </div>
+
+        <div class="form-field">
+          <label for="login-pw">비밀번호</label>
+          <div class="input-wrap">
+            <input type="password" id="login-pw" name="password"
+                   placeholder="비밀번호 입력"
+                   autocomplete="current-password" />
+            <button type="button" class="pw-toggle" id="toggle-pw" aria-label="비밀번호 보기/숨기기">👁</button>
+          </div>
+          <span class="field-error" id="err-pw">비밀번호를 입력하세요.</span>
+        </div>
+
+        <div class="auth-options">
+          <label>
+            <input type="checkbox" id="auto-login" />
+            자동 로그인
+          </label>
+          <a href="#" id="link-forgot-pw">비밀번호 찾기</a>
+        </div>
+
+        <button type="submit" class="btn-auth-submit" id="btn-login">
+          <span class="btn-text">로그인</span>
+          <span class="auth-spinner"></span>
+        </button>
+
+      </form>
+
+      <!-- 하단 -->
+      <p class="auth-footer-link">
+        아직 회원이 아니신가요? <a href="register.html">회원가입</a>
+      </p>
+
+    </div>
+  </div>
+
+  <!-- ── 간략 푸터 ── -->
+  <footer style="text-align:center; padding:20px; font-size:.82rem; color:var(--text-muted);">
+    © 2026 주보라 · 보라미디어 · 사업자등록번호 593-56-00232
+  </footer>
+
+  <div class="auth-toast" id="auth-toast"></div>
+
+  <script src="js/cloudinary-config.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // 이미 로그인 상태면 리디렉트
+    if (Auth.isLoggedIn()) {
+      const redirect = new URLSearchParams(location.search).get('redirect') || 'index.html';
+      location.href = redirect;
+      return;
+    }
+
+    const form     = document.getElementById('login-form');
+    const btnLogin = document.getElementById('btn-login');
+    const alertBox = document.getElementById('login-alert');
+    const alertMsg = document.getElementById('login-alert-msg');
+    const emailEl  = document.getElementById('login-email');
+    const pwEl     = document.getElementById('login-pw');
+
+    /* ── 공통 리디렉트 ── */
+    function onLoginSuccess(msg) {
+      showToast(msg || '로그인 성공! ✅');
+      setTimeout(() => {
+        const redirect = new URLSearchParams(location.search).get('redirect') || 'index.html';
+        location.href = redirect;
+      }, 800);
+    }
+
+    /* ── 구글 로그인 ── */
+    document.getElementById('btn-google-login').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-google-login');
+      btn.disabled = true;
+      btn.style.opacity = '.7';
+      alertBox.classList.remove('show');
+
+      try {
+        const result = await Auth.loginWithGoogle();
+        if (result.success) {
+          onLoginSuccess(result.isNew
+            ? `${result.user.name}님, 주보라 가입을 환영합니다! 🎉`
+            : `${result.user.name}님, 어서 오세요! ✅`
+          );
+        } else if (result.message) {
+          showAlert(result.message);
+        }
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    });
+
+    /* ── 카카오 로그인 ── */
+    document.getElementById('btn-kakao-login').addEventListener('click', () => {
+      showToast('카카오 로그인은 준비 중입니다.');
+    });
+
+    /* ── 비밀번호 토글 ── */
+    document.getElementById('toggle-pw').addEventListener('click', () => {
+      const show = pwEl.type === 'password';
+      pwEl.type = show ? 'text' : 'password';
+      document.getElementById('toggle-pw').textContent = show ? '🙈' : '👁';
+    });
+
+    /* ── 비밀번호 찾기 ── */
+    document.getElementById('link-forgot-pw').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = emailEl.value.trim();
+      if (!email) { showAlert('이메일을 먼저 입력해주세요.'); return; }
+      if (!isFirebaseReady()) { showAlert('Firebase 설정 후 비밀번호 재설정이 가능합니다.'); return; }
+      try {
+        await getFirebaseAuth().sendPasswordResetEmail(email);
+        showToast('비밀번호 재설정 메일을 발송했습니다. 📧');
+      } catch (err) {
+        showAlert('등록되지 않은 이메일이거나 오류가 발생했습니다.');
+      }
+    });
+
+    /* ── 유효성 검사 ── */
+    function validate() {
+      let ok = true;
+      const val = emailEl.value.trim();
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      const isId    = /^[a-zA-Z0-9_]{3,30}$/.test(val);
+      if (!isEmail && !isId) {
+        showFieldError('err-email'); emailEl.classList.add('error'); ok = false;
+      } else { hideFieldError('err-email'); emailEl.classList.remove('error'); }
+
+      if (!pwEl.value) {
+        showFieldError('err-pw'); pwEl.classList.add('error'); ok = false;
+      } else { hideFieldError('err-pw'); pwEl.classList.remove('error'); }
+
+      return ok;
+    }
+
+    /* ── 이메일 로그인 ── */
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertBox.classList.remove('show');
+      if (!validate()) return;
+
+      btnLogin.classList.add('loading');
+      btnLogin.disabled = true;
+
+      try {
+        const result = await Auth.login(
+          emailEl.value.trim(),
+          pwEl.value,
+          document.getElementById('auto-login').checked
+        );
+        if (result.success) {
+          onLoginSuccess(`${result.user.name || result.user.email}님, 어서 오세요! ✅`);
+        } else {
+          showAlert(result.message || '이메일 또는 비밀번호를 확인해주세요.');
+        }
+      } catch {
+        showAlert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      } finally {
+        btnLogin.classList.remove('loading');
+        btnLogin.disabled = false;
+      }
+    });
+
+    /* ── 헬퍼 ── */
+    function showAlert(msg)       { alertMsg.textContent = msg; alertBox.classList.add('show'); }
+    function showFieldError(id)   { document.getElementById(id).classList.add('show'); }
+    function hideFieldError(id)   { document.getElementById(id).classList.remove('show'); }
+    function showToast(msg) {
+      const t = document.getElementById('auth-toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+  });
+  </script>
+</body>
+</html>

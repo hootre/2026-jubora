@@ -33,10 +33,10 @@
       <div class="container">
         <span>📞 평일 09:00 – 18:00 | 토 09:00 – 13:00</span>
         <div class="header-top-links">
-          <a href="#">로그인</a>
-          <a href="#">회원가입</a>
+          <a href="login.html">로그인</a>
+          <a href="register.html">회원가입</a>
           <a href="#">고객센터</a>
-          <a href="#">주문조회</a>
+          <a href="order.html">주문조회</a>
         </div>
       </div>
     </div>
@@ -65,30 +65,31 @@
     <nav id="site-nav" aria-label="주메뉴">
       <div class="container">
         <ul class="nav-list">
+
           <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+
           <li class="nav-item">
-            <a href="templates.html" class="nav-link active">제품 카탈로그 ▾</a>
+            <a href="templates.html" class="nav-link active">시안보기 ▾</a>
             <div class="nav-dropdown">
-              <a href="#">현수막</a><a href="#">배너</a><a href="#">X-배너</a>
-              <a href="#">롤업 배너</a><a href="#">현수막 스탠드</a><a href="#">명함·스티커</a>
+              <a href="templates.html?cat=horizontal">가로형 현수막</a>
+              <a href="templates.html?cat=season">절기 현수막</a>
+              <a href="templates.html?cat=worship">예배·행사 현수막</a>
+              <a href="templates.html?cat=vertical">세로형 배너</a>
+              <a href="templates.html?cat=print">인쇄물</a>
+              <a href="templates.html?cat=goods">교회용품</a>
             </div>
           </li>
-          <li class="nav-item"><a href="templates.html" class="nav-link active">디자인 템플릿</a></li>
-          <li class="nav-item">
-            <a href="editor.html" class="nav-link">직접 제작 ▾</a>
-            <div class="nav-dropdown">
-              <a href="editor.html">온라인 편집기</a><a href="#">파일 직접 업로드</a>
-            </div>
-          </li>
-          <li class="nav-item"><a href="order.html" class="nav-link">견적·주문</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">이벤트</a></li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">고객센터 ▾</a>
-            <div class="nav-dropdown">
-              <a href="#">자주 묻는 질문</a><a href="#">제작 가이드</a>
-              <a href="#">1:1 문의</a><a href="#">공지사항</a>
-            </div>
-          </li>
+
+          <li class="nav-item"><a href="editor.html" class="nav-link">직접편집</a></li>
+
+          <li class="nav-item"><a href="guide.html" class="nav-link">이용안내</a></li>
+
+          <li class="nav-item"><a href="price.html" class="nav-link">가격안내</a></li>
+
+          <li class="nav-item"><a href="order.html" class="nav-link">주문하기</a></li>
+
+          <li class="nav-item"><a href="#" class="nav-link">묻고답하기</a></li>
+
         </ul>
       </div>
     </nav>
@@ -104,10 +105,10 @@
         <nav class="breadcrumb" aria-label="경로">
           <a href="index.html">홈</a>
           <span class="breadcrumb-sep">›</span>
-          <span>디자인 템플릿</span>
+          <span>시안보기</span>
         </nav>
-        <h1>디자인 템플릿</h1>
-        <p>수백 가지 전문 템플릿 중 골라 바로 편집·주문하세요</p>
+        <h1>시안 보기</h1>
+        <p>교회 현수막·배너·인쇄물 전용 시안 모음 — 문구 입력 후 바로 주문</p>
       </div>
     </div>
 
@@ -115,13 +116,13 @@
     <div class="tpl-tab-bar" id="tpl-tab-bar">
       <div class="container">
         <div class="tpl-tab-list" role="tablist" id="tpl-tab-list">
-          <button class="tpl-tab active" data-tab="all"      role="tab" aria-selected="true">전체</button>
-          <button class="tpl-tab"        data-tab="opening"  role="tab" aria-selected="false">개업축하</button>
-          <button class="tpl-tab"        data-tab="hbanner"  role="tab" aria-selected="false">현수막</button>
-          <button class="tpl-tab"        data-tab="xbanner"  role="tab" aria-selected="false">배너</button>
-          <button class="tpl-tab"        data-tab="election" role="tab" aria-selected="false">선거</button>
-          <button class="tpl-tab"        data-tab="event"    role="tab" aria-selected="false">행사</button>
-          <button class="tpl-tab"        data-tab="etc"      role="tab" aria-selected="false">기타</button>
+          <button class="tpl-tab active" data-tab="all"        role="tab" aria-selected="true">전체</button>
+          <button class="tpl-tab"        data-tab="horizontal" role="tab" aria-selected="false">가로형 현수막</button>
+          <button class="tpl-tab"        data-tab="season"     role="tab" aria-selected="false">절기</button>
+          <button class="tpl-tab"        data-tab="worship"    role="tab" aria-selected="false">예배·행사</button>
+          <button class="tpl-tab"        data-tab="vertical"   role="tab" aria-selected="false">세로형 배너</button>
+          <button class="tpl-tab"        data-tab="print"      role="tab" aria-selected="false">인쇄물</button>
+          <button class="tpl-tab"        data-tab="goods"      role="tab" aria-selected="false">교회용품</button>
         </div>
       </div>
     </div>
@@ -144,65 +145,55 @@
               <div class="filter-check-list">
                 <label class="filter-check">
                   <input type="checkbox" name="type" value="현수막" />
-                  <span>현수막·플래카드</span>
+                  <span>현수막 (가로형)</span>
                   <em class="filter-count" data-type-tag="현수막"></em>
                 </label>
                 <label class="filter-check">
                   <input type="checkbox" name="type" value="배너" />
-                  <span>배너·X배너</span>
+                  <span>배너 (세로형)</span>
                   <em class="filter-count" data-type-tag="배너"></em>
+                </label>
+                <label class="filter-check">
+                  <input type="checkbox" name="type" value="주보" />
+                  <span>주보·인쇄물</span>
+                  <em class="filter-count" data-type-tag="주보"></em>
                 </label>
               </div>
             </div>
 
-            <!-- 용도 -->
+            <!-- 카테고리 -->
             <div class="filter-group">
-              <h4>용도</h4>
+              <h4>카테고리</h4>
               <div class="filter-check-list">
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="opening" />
-                  <span>개업·오픈</span>
-                  <em class="filter-count" data-cat="opening"></em>
+                  <input type="checkbox" name="usage" value="horizontal" />
+                  <span>가로형 현수막</span>
+                  <em class="filter-count" data-cat="horizontal"></em>
                 </label>
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="event" />
-                  <span>행사·축제</span>
-                  <em class="filter-count" data-cat="event"></em>
+                  <input type="checkbox" name="usage" value="season" />
+                  <span>절기 현수막</span>
+                  <em class="filter-count" data-cat="season"></em>
                 </label>
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="sale" />
-                  <span>세일·할인</span>
-                  <em class="filter-count" data-cat="sale"></em>
+                  <input type="checkbox" name="usage" value="worship" />
+                  <span>예배·행사 현수막</span>
+                  <em class="filter-count" data-cat="worship"></em>
                 </label>
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="election" />
-                  <span>선거·캠페인</span>
-                  <em class="filter-count" data-cat="election"></em>
+                  <input type="checkbox" name="usage" value="vertical" />
+                  <span>세로형 배너</span>
+                  <em class="filter-count" data-cat="vertical"></em>
                 </label>
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="school" />
-                  <span>학교·학원</span>
-                  <em class="filter-count" data-cat="school"></em>
+                  <input type="checkbox" name="usage" value="print" />
+                  <span>인쇄물</span>
+                  <em class="filter-count" data-cat="print"></em>
                 </label>
                 <label class="filter-check">
-                  <input type="checkbox" name="usage" value="food" />
-                  <span>음식·요식업</span>
-                  <em class="filter-count" data-cat="food"></em>
-                </label>
-                <label class="filter-check">
-                  <input type="checkbox" name="usage" value="realestate" />
-                  <span>부동산·분양</span>
-                  <em class="filter-count" data-cat="realestate"></em>
-                </label>
-                <label class="filter-check">
-                  <input type="checkbox" name="usage" value="church" />
-                  <span>교회·종교</span>
-                  <em class="filter-count" data-cat="church"></em>
-                </label>
-                <label class="filter-check">
-                  <input type="checkbox" name="usage" value="sports" />
-                  <span>스포츠·체육</span>
-                  <em class="filter-count" data-cat="sports"></em>
+                  <input type="checkbox" name="usage" value="goods" />
+                  <span>교회용품</span>
+                  <em class="filter-count" data-cat="goods"></em>
                 </label>
               </div>
             </div>
@@ -360,8 +351,13 @@
   </footer>
   <!-- /FOOTER -->
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
   <script src="js/cloudinary-config.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/auth.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
 
@@ -370,29 +366,26 @@
     ============================================================ */
     const PER_PAGE = 12;
 
-    /** 카테고리별 그라디언트 (Cloudinary 이미지 로드 전/실패 시 표시) */
+    /** 카테고리별 그라디언트 */
     const CAT_GRADIENT = {
-      opening:    'linear-gradient(135deg,#0367A6,#024f80)',
-      event:      'linear-gradient(135deg,#16a34a,#15803d)',
-      sale:       'linear-gradient(135deg,#F22233,#c91020)',
-      election:   'linear-gradient(135deg,#7c3aed,#5b21b6)',
-      realestate: 'linear-gradient(135deg,#d97706,#b45309)',
-      school:     'linear-gradient(135deg,#0891b2,#0e7490)',
-      food:       'linear-gradient(135deg,#ea580c,#c2410c)',
-      church:     'linear-gradient(135deg,#9333ea,#7e22ce)',
-      sports:     'linear-gradient(135deg,#059669,#047857)',
+      horizontal: 'linear-gradient(135deg,#1a3a6e,#2255aa)',
+      season:     'linear-gradient(135deg,#7a1e1e,#c0392b)',
+      worship:    'linear-gradient(135deg,#1a5e2a,#27ae60)',
+      vertical:   'linear-gradient(135deg,#4a3000,#c0860a)',
+      print:      'linear-gradient(135deg,#2c3e50,#546e7a)',
+      goods:      'linear-gradient(135deg,#6a1b9a,#9c27b0)',
       general:    'linear-gradient(135deg,#64748b,#475569)',
     };
 
     /** 탭 → 필터 함수 매핑 */
     const TAB_FILTER = {
-      all:      ()  => true,
-      opening:  d   => d.category === 'opening',
-      hbanner:  d   => d.tags.includes('현수막'),
-      xbanner:  d   => d.tags.includes('배너'),
-      election: d   => d.category === 'election',
-      event:    d   => d.category === 'event',
-      etc:      d   => ['sale','realestate','school','food','church','sports','general'].includes(d.category),
+      all:        ()  => true,
+      horizontal: d   => d.category === 'horizontal',
+      season:     d   => d.category === 'season',
+      worship:    d   => d.category === 'worship',
+      vertical:   d   => d.category === 'vertical',
+      print:      d   => d.category === 'print',
+      goods:      d   => d.category === 'goods',
     };
 
     /* ============================================================
@@ -409,13 +402,12 @@
       page:        1,
     };
 
-    /* URL 파라미터로 초기 탭 자동 선택 */
-    const urlCat = new URLSearchParams(location.search).get('category');
-    const catToTab = { opening:'opening', event:'event', election:'election', sale:'etc',
-                       food:'etc', church:'etc', sports:'etc', realestate:'etc', school:'etc' };
-    if (urlCat && catToTab[urlCat]) {
-      state.tab = catToTab[urlCat];
-      const initBtn = document.querySelector(`.tpl-tab[data-tab="${state.tab}"]`);
+    /* URL 파라미터로 초기 탭 자동 선택 (?cat=horizontal 등) */
+    const urlCat = new URLSearchParams(location.search).get('cat');
+    const validTabs = ['horizontal','season','worship','vertical','print','goods'];
+    if (urlCat && validTabs.includes(urlCat)) {
+      state.tab = urlCat;
+      const initBtn = document.querySelector(`.tpl-tab[data-tab="${urlCat}"]`);
       if (initBtn) {
         document.querySelectorAll('.tpl-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
         initBtn.classList.add('active');
